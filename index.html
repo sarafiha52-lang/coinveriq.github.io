@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veriq Ecosystem - Official Project & Token Portal</title>
     <link rel="icon" type="image/svg+xml" href="logo.svg" sizes="32x32">
+    <!-- Ethers.js for Web3 Integration -->
+    <script src="https://cloudflare.com" type="text/javascript"></script>
     <style>
         /* Smooth Scrolling Enabled globally */
         html {
@@ -43,6 +45,12 @@
             font-weight: 800;
             color: #38bdf8;
             letter-spacing: 1.5px;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         .nav-links {
@@ -132,6 +140,7 @@
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
+            transition: all 0.3s;
         }
 
         .btn:hover {
@@ -147,6 +156,11 @@
         .btn-secondary:hover {
             background-color: rgba(56, 189, 248, 0.1);
             color: #ffffff;
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 14px;
         }
 
         .contract-box {
@@ -208,6 +222,7 @@
             gap: 20px;
             flex-wrap: wrap;
             justify-content: center;
+            margin-bottom: 40px;
         }
 
         .utility-card {
@@ -218,6 +233,9 @@
             flex: 1;
             min-width: 250px;
             max-width: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .utility-card h3 {
@@ -229,6 +247,64 @@
         .utility-card p {
             color: #9ca3af;
             font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        .web3-input {
+            width: 100%;
+            padding: 10px;
+            background: #060913;
+            border: 1px solid #1f2937;
+            border-radius: 6px;
+            color: #ffffff;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .status-msg {
+            font-size: 12px;
+            color: #e2e8f0;
+            margin-top: 10px;
+            font-style: italic;
+            text-align: center;
+        }
+
+        /* Utility Code Viewer Styling */
+        .code-viewer-container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .code-viewer-header {
+            color: #38bdf8;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .code-block {
+            background: #060913;
+            border: 1px solid #1f2937;
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        .code-block code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            color: #38bdf8;
+            white-space: pre;
         }
 
         .roadmap-timeline {
@@ -328,6 +404,7 @@
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 32px; }
+            .nav-container { flex-direction: column; gap: 10px; }
             .nav-links { display: none; }
             .utility-grid, .team-grid { flex-direction: column; align-items: center; }
         }
@@ -336,103 +413,3 @@
 <body>
 
     <header>
-        <div class="logo">VERIQ</div>
-        <ul class="nav-links">
-            <li><a href="#contract">On-Chain Data</a></li>
-            <li><a href="#utility">Token Utility</a></li>
-            <li><a href="#roadmap">Roadmap</a></li>
-            <li><a href="#founders">Founders</a></li>
-        </ul>
-    </header>
-
-    <div class="hero">
-        <h1>Quantum & AI Powered <span>Media Verification</span></h1>
-        <p>Veriq (VRQ) is a decentralized architecture engineered to detect, analyze, and stamp the integrity of synthetic media assets using next-generation cryptographic verification structures.</p>
-        <div class="btn-container">
-            <a href="#utility" class="btn">Explore Token Utility</a>
-            <a href="https://github.com" target="_blank" class="btn btn-secondary">Read Whitepaper</a>
-        </div>
-    </div>
-
-    <section id="contract">
-        <h2 class="section-title">Verified <span>On-Chain Parameters</span></h2>
-        <p class="section-subtitle">Extracted directly from the Ethereum Blockchain Architecture Protocols</p>
-        
-        <div class="contract-box">
-            <div class="contract-label">Official Smart Contract Address</div>
-            <span class="contract-string">0xFa3Fa8BD0D10B028C5306d8e24d8Af4B20d14358</span>
-            
-            <a href="https://etherscan.io" target="_blank" class="btn btn-secondary">Verify On Etherscan</a>
-            
-            <table class="spec-table">
-                <tr>
-                    <th>Specification Standard</th>
-                    <td>ERC-20 Compliant Protocol Token</td>
-                </tr>
-                <tr>
-                    <th>Blockchain Network</th>
-                    <td>Ethereum Mainnet Infrastructure</td>
-                </tr>
-                <tr>
-                    <th>Token Asset Name</th>
-                    <td>Veriq</td>
-                </tr>
-                <tr>
-                    <th>Token Asset Symbol</th>
-                    <td>VRQ</td>
-                </tr>
-            </table>
- Ecosystem Token Utility
-Core workflows driven natively by the VRQ project asset
-
-
-Synthetic Media Analysis
-Utilize native VRQ tokens to run cryptographic verification algorithms to isolate deepfakes and AI alterations from raw physical captures.
-
-
-Quantum Validation Layers
-Power specialized nodes built to maintain tamper-proof ledgers of media signatures across multi-tiered security networks.
-
-
-Decentralized Node Staking
-Lock platform assets into computational consensus pools to anchor operational performance tiers and secure data validation tracks.
-
-
-Project Delivery Roadmap
-Strategic distribution timeline and execution stages
-
-
-Phase 1: Smart Contract Deployment
-Core infrastructure compilation, smart contract launch, and formal layout alignment on the Ethereum mainnet ledger.
-
-
-Phase 2: Platform Alpha Release
-Live deployment of project portal dashboards and alpha testing phases for internal image parsing pipeline components.
-
-
-Phase 3: Liquidity Provisions
-Automated locker configuration, structural decentralized tracking setup, and launch of open community staking pools.
-
-
-Phase 4: API & Enterprise Integrations
-Releasing enterprise verification interface endpoints and initiating institutional stress-testing tracks.
-
-
-Phase 5: Real-World Implementations
-Deploying live quantum-assisted media authenticity checks tailored directly for university systems and academic publishers.
-
-
-Project Founders & Leadership
-Verifiable professional profiles backing the Veriq Ecosystem
-
-
-Quantificial
-Founder & Chief Architect
-Specializing in structural Quantum Engineering and decentralized integration systems to combat digital misinformation loops.
-Verify Profile
-
-
-Official Twitter (X)
-Official LinkedIn
-
-© 2026 Veriq Project Ecosystem. All Rights Reserved. Built strictly on Ethereum Network Specification Standards.
