@@ -1,0 +1,99 @@
+import zipfile, re, os
+
+source_zip = "/mnt/data/files/VERIQ_website_updated(1).zip"
+out_dir = "/mnt/data/VERIQ_professional_update"
+os.makedirs(out_dir, exist_ok=True)
+
+with zipfile.ZipFile(source_zip, "r") as zf:
+    html = zf.read("index.html").decode("utf-8")
+    solidity = zf.read("VeriqToken.sol")
+
+# Keep the existing visual design and page content intact.
+# Improve only navigation behavior and mobile accessibility.
+html = html.replace(
+    "        section {\n            padding: 100px 8%;\n            display: block;\n            clear: both;\n        }",
+    "        section {\n            padding: 100px 8%;\n            display: block;\n            clear: both;\n            scroll-margin-top: 96px;\n        }"
+)
+
+html = html.replace(
+    "        .nav-links a:hover {\n            color: #38bdf8;\n        }",
+    """        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            color: #38bdf8;
+        }
+
+        .nav-links a:focus-visible {
+            outline: 2px solid #38bdf8;
+            outline-offset: 5px;
+            border-radius: 3px;
+        }"""
+)
+
+html = html.replace(
+    '        @media (max-width: 768px) {\n            .hero h1 { font-size: 32px; }\n            .nav-links { display: none; }\n            .utility-grid, .team-grid { flex-direction: column; align-items: center; }\n        }',
+    """        @media (max-width: 768px) {
+            header {
+                padding: 14px 5%;
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px 18px;
+                width: 100%;
+            }
+
+            .nav-links li {
+                margin-left: 0;
+            }
+
+            .nav-links a {
+                display: inline-block;
+                padding: 4px 0;
+                font-size: 14px;
+            }
+
+            section {
+                padding: 76px 5%;
+                scroll-margin-top: 125px;
+            }
+
+            .hero {
+                padding: 100px 5% 85px;
+            }
+
+            .hero h1 { font-size: 32px; }
+            .utility-grid, .team-grid { flex-direction: column; align-items: center; }
+        }"""
+)
+
+html = html.replace(
+    '        <ul class="nav-links">',
+    '        <nav aria-label="Main navigation"><ul class="nav-links">'
+).replace(
+    '            <li><a href="#founders">Founders</a></li>\n        </ul>',
+    '            <li><a href="#founders">Founders</a></li>\n        </ul></nav>'
+)
+
+# Ensure the page has explicit, accessible section navigation and native smooth-scroll anchors.
+html_path = os.path.join(out_dir, "index.html")
+sol_path = os.path.join(out_dir, "VeriqToken.sol")
+with open(html_path, "w", encoding="utf-8") as f:
+    f.write(html)
+with open(sol_path, "wb") as f:
+    f.write(solidity)
+
+zip_path = "/mnt/data/VERIQ_website_navigation_updated.zip"
+with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
+    zf.write(html_path, "index.html")
+    zf.write(sol_path, "VeriqToken.sol")
+
+print("Updated website files created:")
+print(html_path)
+print(sol_path)
+print(zip_path)
+print("Navigation links remain anchored to On-Chain Data, Token Utility, Roadmap, and Founders.")
+print("No Python code is included in the website package.")
