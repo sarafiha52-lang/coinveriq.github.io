@@ -4,113 +4,259 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veriq Token Ecosystem</title>
+    <!-- Google Fonts for sleek premium look -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://cloudflare.com"></script>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .container {
-            max-width: 900px;
-            width: 100%;
-            background: #1e293b;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
-        header {
-            text-align: center;
-            border-bottom: 2px solid #334155;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-        h1 { color: #38bdf8; margin: 0; }
-        .section {
-            margin-bottom: 25px;
-            padding: 15px;
-            background: #0f172a;
-            border-radius: 8px;
-            border-left: 4px solid #38bdf8;
-        }
-        
-        /* Interactive Nav Bar Tabs Styling */
-        .tab-navigation {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            justify-content: center;
-            background: #0f172a;
-            padding: 10px;
-            border-radius: 8px;
-        }
-        .nav-btn {
-            background-color: transparent;
-            color: #94a3b8;
-            border: 2px solid #334155;
-            padding: 10px 25px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .nav-btn:hover {
-            color: #38bdf8;
-            border-color: #38bdf8;
-        }
-        .nav-btn.active {
-            background-color: #38bdf8;
-            color: #0f172a;
-            border-color: #38bdf8;
+        :root {
+            --bg-dark: #030712;
+            --bg-surface: #0b1329;
+            --bg-card: rgba(17, 24, 39, 0.7);
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(51, 65, 85, 0.5);
+            --success: #10b981;
         }
 
-        /* Hide content segments by default */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            /* Cyberpunk subtle radial gradient background illumination */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 40%);
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            padding: 45px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ambient Top Border Glow Line */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), #6366f1, transparent);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            background: linear-gradient(135deg, #fff 40%, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Premium Nav Bar / Tab Layout Control System */
+        .tab-navigation {
+            display: flex;
+            background: rgba(3, 7, 18, 0.6);
+            padding: 6px;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            gap: 8px;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .nav-btn {
+            flex: 1;
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            padding: 12px 16px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-btn:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .nav-btn.active {
+            background: var(--accent);
+            color: #030712;
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
+        }
+
+        /* Hide elements by default with slide animation config */
         .tab-content {
             display: none;
-            animation: fadeIn 0.4s ease;
+            animation: slideFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+        
         .tab-content.show {
             display: block;
         }
 
-        /* Regular Web UI elements */
-        .wallet-btn {
-            background-color: #e2e8f0;
-            color: #0f172a;
-            border: none;
-            padding: 10px 20px;
-            font-size: 15px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .wallet-btn:hover { background-color: #cbd5e1; }
-        
-        ol, ul {
-            padding-left: 20px;
-            line-height: 1.6;
-        }
-        li {
-            margin-bottom: 8px;
+        /* Dynamic Grid Layout for Cards rendering */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
+        .section-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .section-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 12px 30px -10px rgba(0,0,0,0.7), 0 0 20px var(--accent-glow);
+        }
+
+        .section-card h3 {
+            color: var(--accent);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-card p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        .section-card p strong {
+            color: var(--text-main);
+        }
+
+        /* Standardized List elements for Roadmap panel */
+        ul {
+            list-style: none;
+        }
+
+        li {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 0.85rem;
+        }
+
+        /* High Tech Action Button Layout */
+        .wallet-btn {
+            background: linear-gradient(135deg, #fff, #e2e8f0);
+            color: #030712;
+            border: none;
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+        }
+
+        .wallet-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(255,255,255,0.15);
+            background: #fff;
+        }
+
+        #walletAddress {
+            margin-top: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            padding: 12px;
+            background: rgba(3, 7, 18, 0.5);
+            border-radius: 8px;
+            border: 1px dashed var(--border-color);
+            text-align: center;
+            word-break: break-all;
+        }
+
+        @keyframes slideFade {
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile View Adaptability fixes */
+        @media (max-width: 768px) {
+            .container { padding: 25px 20px; }
+            header h1 { font-size: 1.9rem; }
+            .tab-navigation { flex-direction: column; padding: 8px; }
+            .nav-btn { width: 100%; }
+            .cards-grid { grid-template-columns: 1fr; }
         }
 
         .footer {
             text-align: center;
-            margin-top: 30px;
-            font-size: 12px;
-            color: #64748b;
+            margin-top: 50px;
+            font-size: 13px;
+            color: #4b5563;
+            font-weight: 500;
+            border-top: 1px solid var(--border-color);
+            padding-top: 25px;
         }
     </style>
 </head>
@@ -119,132 +265,38 @@
 <div class="container">
     <header>
         <h1>VERIQ TOKEN ECOSYSTEM</h1>
-        <p>Decentralized Trust Badges & Quantum-AI Deepfake Safeguards</p>
+        <p>Decentralized Identity Verification Ledger & Quantum AI Detection Nodes</p>
     </header>
 
-    <!-- Interactive Navigation Control Unit -->
+    <!-- Interactive Navigation Control Unit Dashboard -->
     <div class="tab-navigation">
-        <button class="nav-btn active" onclick="switchTab('overview')">Overview</button>
-        <button class="nav-btn" onclick="switchTab('utility')">Ecosystem Utility</button>
-        <button class="nav-btn" onclick="switchTab('roadmap')">Project Roadmap</button>
+        <button id="btn-overview" class="nav-btn active" onclick="switchTab('overview')">Terminal Overview</button>
+        <button id="btn-utility" class="nav-btn" onclick="switchTab('utility')">Ecosystem Utility</button>
+        <button id="btn-roadmap" class="nav-btn" onclick="switchTab('roadmap')">Strategic Roadmap</button>
     </div>
 
     <!-- TAB 1: OVERVIEW PANEL -->
     <div id="overview" class="tab-content show">
-        <div class="section">
-            <h3>Ecosystem Core Information</h3>
-            <p><strong>Token Name:</strong> Veriq</p>
-            <p><strong>Symbol:</strong> VRQ</p>
-            <p><strong>Total Hard Cap Supply:</strong> 190,000,000 $VERIQ</p>
-            <p><strong>Contract Protocol:</strong> Fixed Supply Deflationary Architecture</p>
-        </div>
+        <div class="cards-grid">
+            <div class="section-card">
+                <h3>📊 On-Chain Parameters</h3>
+                <p style="margin-bottom: 10px;"><strong>Token Name:</strong> Veriq</p>
+                <p style="margin-bottom: 10px;"><strong>Asset Ticker:</strong> VRQ</p>
+                <p style="margin-bottom: 10px;"><strong>Total Hard Cap Supply:</strong> 190,000,000 $VERIQ</p>
+                <p><strong>Contract Protocol:</strong> Fixed Supply Deflationary Architecture</p>
+            </div>
 
-        <div class="section">
-            <h3>Wallet Hub</h3>
-            <button class="wallet-btn" id="connectWallet">Connect Web3 Wallet</button>
-            <p id="walletAddress" style="margin-top: 10px; font-family: monospace; color: #38bdf8;"></p>
+            <div class="section-card">
+                <h3>🔑 Secure Wallet Gateway</h3>
+                <p style="margin-bottom: 15px;">Connect your Web3 core client to authenticate transactions and access decentralized tracking structures.</p>
+                <button class="wallet-btn" id="connectWallet">Connect Web3 Wallet</button>
+                <p id="walletAddress" style="display: none;"></p>
+            </div>
         </div>
     </div>
 
     <!-- TAB 2: UTILITY PANEL -->
     <div id="utility" class="tab-content">
-        <div class="section">
-            <h3>1. Veriq Verified Badge (E-Commerce Trust)</h3>
-            <p>Online stores aur E-commerce businesses $VERIQ tokens stake karke decentralized <strong>"Veriq Verified Badge"</strong> claim kar sakte hain. Jab customer aapke store par aayega, toh is badge ki wajah se use product clarity, real-time storefront protection aur ultimate security milegi jis se purchase conversion barh jayegi.</p>
-        </div>
-        <div class="section">
-            <h3>2. QUANTIFICIAL (Quantum + AI Engine)</h3>
-            <p>Humara dynamic technology stack Quantum Computing aur Artificial Intelligence ko mila kar deepfake detection platform faraham karta hai. Yeh real-time computing backend advanced AI images, fake videos aur digital documents ko foran intercept kar ke detect karta hai aur unhe absolute clarity ke sath filter karta hai.</p>
-        </div>
-        <div class="section">
-            <h3>3. Public Micro-Services</h3>
-            <p>Veriq engineering architecture future mein simple, low-cost aur reliable everyday application systems release karegi jis se aam public ko reasonable optimization charges ke sath digital utilities direct access ho saken.</p>
-        </div>
-    </div>
-
-    <!-- TAB 3: ROADMAP PANEL -->
-    <div id="roadmap" class="tab-content">
-        <div class="section">
-            <h3>Phase 1: Genesis & Smart Contract Rollout</h3>
-            <ul>
-                <li>Core deployment of the 190M capped $VERIQ immutable smart contract ledger.</li>
-                <li>Finalization of the decentralized mathematical verification standards for e-commerce store staking modules.</li>
-                <li>Official global publication of the ecosystem whitepaper documentation.</li>
-            </ul>
-        </div>
-        <div class="section">
-            <h3>Phase 2: Decentralized Inception & Core Tracking</h3>
-            <ul>
-                <li>Initial Decentralized Exchange (DEX) liquidity deployment with fixed time lock constraints.</li>
-                <li>Strategic global registration tracking rollout with index networks (CoinMarketCap & CoinGecko).</li>
-                <li>Beta pilot activation of the e-commerce Veriq Verified Trust Badge integration layer.</li>
-            </ul>
-        </div>
-        <div class="section">
-            <h3>Phase 3: Deep Quantum-AI Framework Audit</h3>
-            <ul>
-                <li>Alpha platform construction combining deep learning convolutional architectures with custom cryptographic models.</li>
-                <li>Execution of high-frequency sandbox diagnostics on targeted algorithmic image/video manipulations.</li>
-                <li>Launch of core operational staking vaults for distributed validator consensus nodes.</li>
-            </ul>
-        </div>
-        <div class="section">
-            <h3>Phase 4: Scaling, Production & Public Governance</h3>
-            <ul>
-                <li>Production-ready global release of the decentralized deepfake validation API ecosystem.</li>
-                <li>Deployment of straightforward public microservice apps with highly optimized fee parameters.</li>
-                <li>Transition of architecture updates to community-led DAO voting frameworks.</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="footer">
-        &copy; 2026 Veriq Network. All Rights Secured under Decentralized Frameworks.
-    </div>
-</div>
-
-<script>
-    // Tab Switching Logic Controller
-    function switchTab(tabId) {
-        // Sub-step 1: Remove active class formatting from all navigation buttons
-        const navButtons = document.querySelectorAll('.nav-btn');
-        navButtons.forEach(btn => btn.classList.remove('active'));
-
-        // Sub-step 2: Hide all conditional content segments
-        const tabContents = document.querySelectorAll('.tab-content');
-        tabContents.forEach(content => content.classList.remove('show'));
-
-        // Sub-step 3: Activate target control element
-        const selectedContent = document.getElementById(tabId);
-        if(selectedContent) {
-            selectedContent.classList.add('show');
-        }
-
-        // Highlight matching button item based on active selection state
-        const targetButton = Array.from(navButtons).find(btn => btn.getAttribute('onclick').includes(tabId));
-        if(targetButton) {
-            targetButton.classList.add('active');
-        }
-    }
-
-    // Standard Web3 Integration Handler
-    const connectBtn = document.getElementById('connectWallet');
-    const walletText = document.getElementById('walletAddress');
-
-    if(connectBtn) {
-        connectBtn.addEventListener('click', async () => {
-            if (window.ethereum) {
-                try {
-                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                    walletText.innerText = "Active Account Address: " + accounts[0];
-                } catch (error) {
-                    walletText.innerText = "Connection Refused: " + error.message;
-                }
-            } else {
-                alert("Web3 Wallet not detected. Please install MetaMask or another extensions layer.");
-            }
-        });
-    }
-</script>
-</body>
-</html>
+        <div class="cards-grid">
+            <div class="section-card">
+                <h3>🛡️ 1. Veriq Verified Badge</h3>
