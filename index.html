@@ -330,86 +330,32 @@
             color: #9ca3af;
             font-size: 14px;
         }
-
-        .team-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .team-card {
-            background-color: #0f172a;
-            border: 1px solid #1e293b;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            width: 100%;
-            max-width: 350px;
-        }
-
-        .team-card h3 {
-            color: #ffffff;
-            font-size: 20px;
-            margin-bottom: 5px;
-        }
-
-        .team-card .role {
-            color: #38bdf8;
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-        }
-
-        .team-card p {
-            color: #9ca3af;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        footer {
-            background-color: #0b0f19;
-            padding: 40px 8%;
-            border-top: 1px solid #1f2937;
-            text-align: center;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .social-icon {
-            color: #ffffff;
-            background: #1f2937;
-            padding: 10px 20px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-
-        .social-icon:hover {
-            background: #38bdf8;
-            color: #060913;
-        }
-
-        footer p {
-            color: #6b7280;
-            font-size: 14px;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 32px; }
-            .nav-container { flex-direction: column; gap: 10px; }
-            .nav-links { display: none; }
-            .utility-grid, .team-grid { flex-direction: column; align-items: center; }
-        }
     </style>
 </head>
 <body>
 
     <header>
+        <div class="logo">VERIQ</div>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero" id="hero">
+        <h1>Veriq <span>Ecosystem</span></h1>
+        <p>Official Project & Token Portal. Decentralized validation architecture and automated governance protocols built for scale.</p>
+        <div class="btn-container">
+            <a href="#" class="btn">Launch App</a>
+            <!-- New Whitepaper Link Added Below -->
+            <a href="https://github.com/sarafiha52-lang/Veriq-logo/blob/main/VERIQ%20Whitepaper.pdf" target="_blank" class="btn btn-secondary">Whitepaper</a>
+        </div>
+    </section>
+
+    <!-- Content Sections dynamically handled by layout -->
+
+</body>
+</html>
