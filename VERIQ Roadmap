@@ -1,0 +1,322 @@
+from reportlab.lib import colors
+from reportlab.lib.enums import TA_CENTER
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.units import mm
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, HRFlowable, KeepTogether
+from reportlab.lib.colors import HexColor
+from xml.sax.saxutils import escape
+
+out = "/mnt/data/VERIQ_Project_Roadmap_v1.0.pdf"
+
+navy = HexColor("#101B33")
+blue = HexColor("#245CE2")
+pale = HexColor("#EEF3FF")
+ink = HexColor("#202939")
+muted = HexColor("#667085")
+line = HexColor("#D8DFEA")
+light = HexColor("#F5F7FA")
+green = HexColor("#18794E")
+amber = HexColor("#9A6700")
+
+ss = getSampleStyleSheet()
+ss.add(ParagraphStyle(name="Cover", parent=ss["Title"], fontName="Helvetica-Bold", fontSize=31, leading=36, textColor=navy, alignment=TA_CENTER, spaceAfter=8))
+ss.add(ParagraphStyle(name="SubCover", parent=ss["Normal"], fontName="Helvetica", fontSize=13, leading=18, textColor=muted, alignment=TA_CENTER))
+ss.add(ParagraphStyle(name="H1v", parent=ss["Heading1"], fontName="Helvetica-Bold", fontSize=18, leading=23, textColor=navy, spaceBefore=6, spaceAfter=8))
+ss.add(ParagraphStyle(name="H2v", parent=ss["Heading2"], fontName="Helvetica-Bold", fontSize=11.5, leading=15, textColor=blue, spaceBefore=8, spaceAfter=4))
+ss.add(ParagraphStyle(name="Bodyv", parent=ss["BodyText"], fontName="Helvetica", fontSize=9, leading=13.2, textColor=ink, spaceAfter=6))
+ss.add(ParagraphStyle(name="Smallv", parent=ss["BodyText"], fontName="Helvetica", fontSize=7.7, leading=10.5, textColor=muted, spaceAfter=4))
+ss.add(ParagraphStyle(name="Bulletv", parent=ss["BodyText"], fontName="Helvetica", fontSize=8.8, leading=12.5, leftIndent=12, firstLineIndent=-8, textColor=ink, spaceAfter=3))
+ss.add(ParagraphStyle(name="THv", parent=ss["BodyText"], fontName="Helvetica-Bold", fontSize=7.8, leading=9.5, textColor=colors.white))
+ss.add(ParagraphStyle(name="TCv", parent=ss["BodyText"], fontName="Helvetica", fontSize=7.8, leading=10.2, textColor=ink))
+ss.add(ParagraphStyle(name="Callv", parent=ss["BodyText"], fontName="Helvetica-Bold", fontSize=8.7, leading=12.5, textColor=navy))
+
+def P(s, st="Bodyv"):
+    return Paragraph(s, ss[st])
+
+def B(s):
+    return P("• " + s, "Bulletv")
+
+def heading(s, intro=None):
+    a = [P(s, "H1v"), HRFlowable(width="100%", thickness=0.8, color=line, spaceBefore=0, spaceAfter=7)]
+    if intro:
+        a.insert(1, P(intro, "Bodyv"))
+    return a
+
+def note(s, bg=pale, border=blue):
+    t = Table([[P(s, "Callv")]], colWidths=[170*mm])
+    t.setStyle(TableStyle([
+        ("BACKGROUND",(0,0),(-1,-1),bg),("BOX",(0,0),(-1,-1),0.8,border),
+        ("LEFTPADDING",(0,0),(-1,-1),10),("RIGHTPADDING",(0,0),(-1,-1),10),
+        ("TOPPADDING",(0,0),(-1,-1),8),("BOTTOMPADDING",(0,0),(-1,-1),8)
+    ]))
+    return t
+
+def table(data, widths, repeat=1):
+    t=Table(data,colWidths=widths,repeatRows=repeat)
+    t.setStyle(TableStyle([
+        ("BACKGROUND",(0,0),(-1,0),navy),
+        ("ROWBACKGROUNDS",(0,1),(-1,-1),[colors.white,light]),
+        ("GRID",(0,0),(-1,-1),0.4,line),
+        ("VALIGN",(0,0),(-1,-1),"TOP"),
+        ("LEFTPADDING",(0,0),(-1,-1),7),("RIGHTPADDING",(0,0),(-1,-1),7),
+        ("TOPPADDING",(0,0),(-1,-1),6),("BOTTOMPADDING",(0,0),(-1,-1),6)
+    ]))
+    return t
+
+def footer(c, doc):
+    c.saveState()
+    w,h=A4
+    if doc.page > 1:
+        c.setStrokeColor(line); c.line(20*mm,15*mm,w-20*mm,15*mm)
+        c.setFont("Helvetica",7.5); c.setFillColor(muted)
+        c.drawString(20*mm,10*mm,"VERIQ | Project Roadmap v1.0")
+        c.drawRightString(w-20*mm,10*mm,f"Page {doc.page}")
+    c.restoreState()
+
+doc=SimpleDocTemplate(out,pagesize=A4,rightMargin=20*mm,leftMargin=20*mm,topMargin=17*mm,bottomMargin=22*mm,
+                      title="VERIQ Project Roadmap v1.0",author="VERIQ Project",subject="Public roadmap and development vision")
+story=[]
+
+# Cover
+story += [Spacer(1,28*mm),P("VERIQ","Cover"),P("PROJECT ROADMAP","Cover"),
+          Spacer(1,4*mm),P("Trust & Verification Network","SubCover"),Spacer(1,10*mm)]
+cover=Table([[P("<b>One token. Multiple real-world utilities.</b><br/>A public roadmap describing the intended product direction, development phases, technical priorities and contribution principles for the VERIQ ecosystem.","Bodyv")]],colWidths=[150*mm])
+cover.setStyle(TableStyle([("BACKGROUND",(0,0),(-1,-1),pale),("BOX",(0,0),(-1,-1),1,blue),
+                           ("LEFTPADDING",(0,0),(-1,-1),15),("RIGHTPADDING",(0,0),(-1,-1),15),
+                           ("TOPPADDING",(0,0),(-1,-1),13),("BOTTOMPADDING",(0,0),(-1,-1),9)]))
+story += [cover,Spacer(1,12*mm)]
+story += [table([
+    [P("TOKEN","THv"),P("NETWORK","THv"),P("TOTAL SUPPLY","THv"),P("DECIMALS","THv")],
+    [P("<b>VERIQ (VRQ)</b>","TCv"),P("<b>Ethereum</b>","TCv"),P("<b>190,000,000 VRQ</b>","TCv"),P("<b>18</b>","TCv")]
+], [38*mm,38*mm,48*mm,26*mm])]
+story += [Spacer(1,13*mm),P("DOCUMENT PURPOSE","H2v"),
+          P("This document is intended for developers, contributors, reviewers, potential partners and members of the public who want to understand what VERIQ aims to build. It explains the project vision and a phased development plan in plain, professional English. It is a roadmap, not a claim that every proposed feature is already operational.","Bodyv"),
+          P("DOCUMENT CONTROL","H2v"),
+          P("<b>Version:</b> 1.0 &nbsp;&nbsp; <b>Date:</b> November 2026 &nbsp;&nbsp; <b>Status:</b> Proposed public roadmap","Bodyv"),
+          P("The roadmap should be updated as engineering work, security reviews, legal analysis and project priorities evolve.","Smallv"),PageBreak()]
+
+# 1
+story += heading("1. Executive Summary","VERIQ is envisioned as a digital trust and verification ecosystem. Its first product focus is business and e-commerce verification, with longer-term research into digital-content authenticity and AI-assisted fraud signals.")
+story += [P("The project aims to help customers inspect a business's published verification status and understand what checks have been completed. A public record should explain the verification scope, review date, limitations and status. VERIQ should not treat a token, badge or automated model as proof that an organization is risk-free.","Bodyv"),
+          P("Strategic priorities","H2v"),
+          B("<b>Build real utility:</b> deliver a working verification service before making token-market activity the central focus."),
+          B("<b>Make verification understandable:</b> publish the criteria, evidence categories, review process and appeal route."),
+          B("<b>Protect privacy:</b> keep sensitive documents off public blockchains and limit data collection."),
+          B("<b>Engineer for security:</b> test, review and audit critical systems before production use."),
+          B("<b>Report progress honestly:</b> distinguish completed work from planned, in-progress and research-stage work."),
+          note("<b>Core principle:</b> A VERIQ verification badge should mean that a defined review was completed against published criteria. It must not be represented as a guarantee against fraud, business failure or future misconduct.")]
+
+# 2
+story += heading("2. Vision, Mission & Objectives")
+story += [P("Vision","H2v"),P("To contribute to a more transparent digital environment where people can make better-informed decisions about online businesses, stores and digital platforms.","Bodyv"),
+          P("Mission","H2v"),P("To develop accessible verification tools and public records that communicate what has been checked, when it was checked and what limitations apply.","Bodyv"),
+          P("Objectives","H2v"),
+          B("Create a clear business and e-commerce verification process."),
+          B("Provide public verification profiles with status, scope and review history."),
+          B("Offer developer-friendly APIs and verification links as the platform matures."),
+          B("Explore responsible AI methods for detecting suspicious or manipulated digital evidence."),
+          B("Build a transparent and security-conscious ecosystem around the VRQ token where token utility is appropriate."),
+          B("Expand only when product quality, privacy, compliance and operational readiness support it.")]
+
+# 3
+story += heading("3. Token & Blockchain Overview","The following specifications reflect the project parameters provided for this roadmap. Readers should verify deployment details directly through the official contract and explorer links published by the project.")
+story += [table([
+    [P("Parameter","THv"),P("Stated specification","THv"),P("Explanation","THv")],
+    [P("Project / token","TCv"),P("VERIQ / VRQ","TCv"),P("Project and token identifier.","TCv")],
+    [P("Blockchain","TCv"),P("Ethereum","TCv"),P("Ethereum Mainnet deployment has been described by the project team; publish the exact contract address and transaction link.","TCv")],
+    [P("Token standard","TCv"),P("ERC-20","TCv"),P("Fungible token standard used on Ethereum.","TCv")],
+    [P("Total supply","TCv"),P("190,000,000 VRQ","TCv"),P("Fixed supply is the stated design; no additional minting is intended.","TCv")],
+    [P("Decimals","TCv"),P("18","TCv"),P("Token precision.","TCv")]
+],[34*mm,42*mm,74*mm]),
+Spacer(1,5*mm),
+P("Public technical information to publish","H2v"),
+B("Exact Ethereum contract address and deployment transaction."),
+B("Verified source code and compiler settings, including optimization settings if applicable."),
+B("Token decimals, total supply and any relevant contract functions."),
+B("Links to tests, security reviews and known limitations."),
+B("Clear statement of any administrative permissions or privileged roles, if they exist."),
+note("<b>Verification note:</b> This PDF does not independently confirm the token contract, Etherscan verification, audit status, exchange listings or any live feature. Add authoritative public links to the repository before publishing.")]
+
+# 4 roadmap phases
+story += [PageBreak()] + heading("4. Complete Development Roadmap","The roadmap is organized into four phases. The sequence is directional; no fixed launch dates are promised. Each phase should be planned through GitHub issues, milestones and release evidence.")
+phases=[
+("PHASE 1 — FOUNDATION & BLOCKCHAIN INFRASTRUCTURE","Primary foundation",
+ "Establish the project's technical and public-information foundation.",
+ [
+ ("Token documentation","Publish contract address, deployment transaction, token parameters and verified source links."),
+ ("Etherscan and public records","Complete and confirm explorer profile information and source-code verification."),
+ ("Official website","Create a clear project website linking documentation, contract information and project channels."),
+ ("Whitepaper and architecture","Document the problem, system design, verification process, token role and limitations."),
+ ("Open-source repository","Set up README, license, contribution rules, security policy, issue templates and release conventions."),
+ ("Verification Protocol V1","Write the requirements and architecture for the first business-verification service.")
+ ]),
+("PHASE 2 — BUSINESS VERIFICATION & TOKEN UTILITY","First real-world product",
+ "Build and test a useful verification service for businesses and e-commerce stores.",
+ [
+ ("Business onboarding","Allow a business to apply and submit only the evidence required for its verification category."),
+ ("Published verification criteria","Define what is checked, what evidence is acceptable and how long a result remains valid."),
+ ("Review dashboard","Create role-based tools for reviewers to approve, reject, request more information and record reasons."),
+ ("Public verification profile","Display business name, verification scope, current status, issue date and last review date."),
+ ("Badge and QR/link","Provide a canonical public link or QR code customers can use to check the current status."),
+ ("Complaints and appeals","Create a documented way to report concerns, challenge decisions and request re-review."),
+ ("VRQ payment option","Evaluate VRQ payments for eligible services while considering accessible alternatives and compliance."),
+ ("DEX and liquidity planning","Treat exchange and liquidity work as a separate workstream, not a substitute for product delivery.")
+ ]),
+("PHASE 3 — AI AUTHENTICITY & ADVANCED SECURITY","Research and validation",
+ "Research whether AI tools can help reviewers identify suspicious or manipulated evidence.",
+ [
+ ("Image analysis","Evaluate image manipulation and provenance indicators using documented test datasets."),
+ ("Video analysis","Research deepfake and video-tampering detection with measured performance."),
+ ("Document analysis","Explore document consistency checks and indicators of possible alteration."),
+ ("AI-assisted risk signals","Present explainable signals to human reviewers; do not treat model output as proof."),
+ ("Quantum machine learning","Conduct feasibility research and reproducible experiments before claiming any practical advantage."),
+ ("Staking and rewards research","Model incentives, risks, governance, slashing, user protections and legal implications before implementation.")
+ ]),
+("PHASE 4 — GLOBAL PLATFORM & ECOSYSTEM","Long-term expansion",
+ "Expand the platform carefully after the first product is reliable and useful.",
+ [
+ ("Verification dApp","Develop a public application for searching and checking verification records."),
+ ("Business verification API","Provide documented API access for approved integrations and third-party platforms."),
+ ("Additional categories","Evaluate company, trading-platform and crypto-project verification using category-specific criteria."),
+ ("Consumer tools","Make it easier for users to check a business's status before transacting."),
+ ("Governance","Explore transparent community proposals and accountable decision-making."),
+ ("International expansion","Assess privacy, consumer protection, tax and regulatory requirements in each target jurisdiction."),
+ ("Monitoring and renewal","Support re-verification, expiry, complaints, status changes, suspension and revocation.")
+ ])
+]
+for title,status,goal,items in phases:
+    story += [P(title,"H2v"),P("<b>Objective:</b> "+goal,"Bodyv")]
+    data=[[P("Workstream","THv"),P("Expected deliverable","THv")]]
+    for a,b in items:
+        data.append([P(a,"TCv"),P(b,"TCv")])
+    story += [table(data,[48*mm,102*mm]),Spacer(1,4*mm)]
+
+# 5
+story += [PageBreak()] + heading("5. Business Verification: Proposed User Journey","The first product should make the verification process understandable to applicants and the public.")
+journey=[
+("1. Application","A business submits its public business details and the minimum supporting evidence required for the selected category."),
+("2. Evidence review","The system checks whether submissions are complete and routes the application to an authorized reviewer."),
+("3. Verification checks","Reviewers apply the published checklist. Checks may include business identity, ownership or authorization evidence, public contact channels and other category-relevant information."),
+("4. Human decision","A reviewer records an approval, rejection or request for more information, together with the scope and reason for the decision."),
+("5. Public profile","An approved profile displays the business identity, category, status, issue date, review date and limitations."),
+("6. Ongoing monitoring","The platform accepts reports and can request re-verification, suspend a badge or revoke it under published rules.")
+]
+for h,b in journey:
+    story += [P(h,"H2v"),P(b,"Bodyv")]
+story += [P("Minimum public profile fields","H2v"),
+          B("Business or platform name and public website/domain, where applicable."),
+          B("Verification category and the exact scope of checks completed."),
+          B("Current status: pending, verified, expired, suspended or revoked."),
+          B("Issue date, last review date and next review/expiry date if applicable."),
+          B("Unique record ID and a link to the verification policy."),
+          B("A clear statement that verification is limited in scope and time.")]
+story += [note("<b>Privacy by design:</b> Do not put passports, identity documents, private contracts, personal addresses or confidential business records directly on a public blockchain. Use access controls, retention limits and a documented deletion process for sensitive evidence.")]
+
+# 6 technical
+story += heading("6. Technical Architecture: High-Level Components")
+story += [P("The final architecture should be selected after requirements and threat modelling. The following components describe a practical conceptual structure, not a claim that they have already been implemented.","Bodyv"),
+          P("Public website and verification interface","H2v"),P("The public-facing experience for applicants, customers and visitors. It should explain the process, show verification profiles and provide links to project documentation.","Bodyv"),
+          P("Application and review service","H2v"),P("A backend service for application intake, evidence management, reviewer permissions, decision records, appeals and audit logs.","Bodyv"),
+          P("Data storage","H2v"),P("A secure database for application and status data, plus protected storage for evidence where required. Public records should expose only appropriate information.","Bodyv"),
+          P("Blockchain integration","H2v"),P("Ethereum may be used for token-related functionality and, where justified, minimal public attestations or references. The design should avoid putting sensitive personal data on-chain.","Bodyv"),
+          P("API layer","H2v"),P("A documented interface for approved integrations to query public verification status, with rate limits, authentication where necessary and clear versioning.","Bodyv"),
+          P("AI research services","H2v"),P("Optional analysis services may produce risk indicators for human review. These services should be isolated, evaluated and monitored separately from the core verification decision process.")]
+
+# 7 VRQ utility
+story += heading("7. VRQ Utility: Proposed Design Areas","Token utility must be connected to a real product need and designed with user protection, security and applicable law in mind.")
+story += [P("Potential utility areas for evaluation","H2v"),
+          B("<b>Service payments:</b> VRQ may be accepted for selected verification services if the payment flow is secure and legally appropriate."),
+          B("<b>Developer integrations:</b> potential API usage or service-credit models may be explored, with clear pricing and alternatives."),
+          B("<b>Membership or discounts:</b> any benefits should be transparent, sustainable and not imply guaranteed financial returns."),
+          B("<b>Staking:</b> consider only after the platform has a clear purpose for staking and a carefully reviewed incentive and risk model."),
+          B("<b>Governance participation:</b> explore mechanisms for community input without compromising reviewer independence or verification integrity."),
+          note("<b>No guaranteed economic outcome:</b> This roadmap does not promise token appreciation, passive income, staking returns, liquidity, exchange listings or future market demand. Any token-related feature requires separate technical, economic and legal review.")]
+
+# 8 AI quantum
+story += heading("8. AI Authenticity & Quantum ML Research")
+story += [P("VERIQ may investigate AI-assisted analysis to help identify suspicious images, videos and documents submitted during verification. The purpose should be to support reviewers, not to replace evidence-based decisions or human accountability.","Bodyv"),
+          P("Research workstreams","H2v"),
+          B("Image forensics: detect signs of editing, compositing or inconsistent metadata where available."),
+          B("Video analysis: evaluate deepfake and manipulation detection across varied sources and quality levels."),
+          B("Document analysis: detect layout anomalies, inconsistencies and potential alterations."),
+          B("Model evaluation: publish dataset descriptions, test methods, false-positive and false-negative rates, and known weaknesses."),
+          B("Human oversight: provide reviewers with explanations and a way to override incorrect model suggestions."),
+          P("Quantum machine learning","H2v"),
+          P("Quantum machine learning should be treated as a research topic. The team should define a specific task, compare quantum-inspired or quantum approaches against strong classical baselines, use reproducible experiments and report whether any measurable benefit exists. The project should not claim quantum advantage without credible evidence.","Bodyv"),
+          note("<b>Responsible claims:</b> No AI detector can guarantee that every fake will be detected or every authentic file will be accepted. Model accuracy depends on data, context and adversarial adaptation.")]
+
+# 9 security
+story += [PageBreak()] + heading("9. Security, Privacy & Operational Requirements")
+for h,b in [
+("Smart-contract security","Publish source code and compiler settings. Test expected and unexpected behavior. Review privileged functions and key management. Obtain independent audits where appropriate before significant value is involved."),
+("Application security","Use secure authentication, role-based permissions, input validation, rate limiting, logging, backups and incident response procedures."),
+("Evidence protection","Encrypt sensitive evidence in transit and at rest, restrict access, define retention periods and provide a secure deletion process where legally appropriate."),
+("Reviewer integrity","Keep auditable decision logs, separate duties where possible, manage conflicts of interest and provide an appeal mechanism."),
+("AI safety","Track model versions, evaluate bias and error rates, monitor drift and ensure human review for consequential decisions."),
+("Incident management","Publish a security contact, vulnerability disclosure process, response ownership and user-notification process."),
+("Legal and compliance review","Obtain qualified advice for token payments, staking, rewards, data protection, consumer claims and cross-border operations.")
+]:
+    story += [P(h,"H2v"),P(b,"Bodyv")]
+
+# 10 timeline/milestones
+story += heading("10. Milestones & Acceptance Evidence","GitHub should be the source of truth for progress. A milestone should only be marked complete when the repository contains evidence that supports the claim.")
+milestones=[
+("M1 — Public foundation","Repository, README, license, token parameters, verified links, contribution guide and security contact are published."),
+("M2 — Protocol specification","Requirements, user flows, data model, verification criteria, privacy plan and threat model are reviewed."),
+("M3 — Verification MVP","A test-environment application supports onboarding, review decisions, public status profiles and automated tests."),
+("M4 — Public beta readiness","Security and privacy reviews are completed, limitations are documented, support and incident processes are ready."),
+("M5 — AI research prototype","Reproducible experiments, benchmark comparisons, error analysis and limitations are published."),
+("M6 — Expansion readiness","API documentation, operating procedures, governance proposal and jurisdictional review are complete.")
+]
+story += [table([[P("Milestone","THv"),P("Acceptance evidence","THv")]]+[[P(a,"TCv"),P(b,"TCv")] for a,b in milestones],[43*mm,107*mm])]
+story += [P("Recommended status labels","H2v"),
+          B("<b>Completed:</b> shipped and supported by public evidence."),
+          B("<b>In Progress:</b> implementation work is active and inspectable."),
+          B("<b>Planned:</b> accepted as a future priority, but not yet implemented."),
+          B("<b>Research:</b> feasibility is being explored; delivery is not committed."),
+          B("<b>Blocked:</b> progress depends on an unresolved issue or external dependency.")]
+
+# 11 GitHub
+story += [PageBreak()] + heading("11. Open-Source Repository & Contribution Plan")
+story += [P("The repository should make it easy for a new contributor to understand the project, run the relevant tests, report a problem and propose a change. Keep product documentation separate from implementation details and never commit secrets or private verification evidence.","Bodyv"),
+          P("Recommended public repository contents","H2v"),
+          B("<b>README:</b> plain-language project overview, current status, links and quick navigation."),
+          B("<b>ROADMAP:</b> editable roadmap that matches this PDF."),
+          B("<b>WHITEPAPER:</b> deeper explanation of the problem, protocol, architecture and token role."),
+          B("<b>LICENSE:</b> a clearly selected open-source license for code."),
+          B("<b>CONTRIBUTING:</b> setup instructions, code standards, pull-request process and review expectations."),
+          B("<b>SECURITY:</b> supported versions and responsible vulnerability-reporting instructions."),
+          B("<b>CHANGELOG:</b> user-facing record of releases and material changes."),
+          P("Contribution workflow","H2v"),
+          B("Open an issue before beginning large or architecture-changing work."),
+          B("Explain the problem, proposed change, testing plan and security/privacy impact."),
+          B("Use pull requests with clear descriptions and relevant tests."),
+          B("Require review for sensitive contract, authentication, payment and data-handling changes."),
+          B("Keep decisions and roadmap changes documented in public issues or proposals."),
+          B("Do not submit seed phrases, API keys, production credentials or personal/business evidence."),
+          P("Suggested repository folders","H2v"),
+          P("<b>docs/</b> — architecture, token information, verification protocol, privacy and API documentation.<br/><b>contracts/</b> — smart-contract source, tests and deployment scripts.<br/><b>applications/</b> — web and admin interfaces.<br/><b>services/</b> — verification backend and API services.<br/><b>research/</b> — AI authenticity and quantum ML experiments.<br/><b>.github/</b> — issue templates and CI workflows.","Bodyv")]
+
+# 12 risks and close
+story += heading("12. Key Risks, Dependencies & Limitations")
+for h,b in [
+("Verification reliability","The quality of a badge depends on the checks performed, evidence quality, reviewer competence and ongoing monitoring."),
+("Privacy and data protection","Collecting business or identity documents creates responsibilities for secure storage, access, retention and deletion."),
+("Security","A deployed token or working prototype is not proof that the wider platform is secure."),
+("AI error","Detection systems can produce false positives and false negatives and may be defeated by new techniques."),
+("Regulatory obligations","Token payments, staking, rewards, verification services and international operations may trigger legal obligations."),
+("Resources and dependencies","Delivery depends on engineering capacity, funding, infrastructure, security reviews, partnerships and community feedback.")
+]:
+    story += [P(h,"H2v"),P(b,"Bodyv")]
+story += [note("<b>Roadmap disclaimer:</b> This document describes project intentions and possible future work. It is not financial, investment, legal or tax advice; it is not an offer to sell any asset; and it does not guarantee delivery dates, exchange listings, token value, returns or commercial outcomes.", bg=HexColor("#FFF7E6"), border=amber)]
+story += [Spacer(1,8*mm),P("13. Long-Term Direction","H1v"),
+          P("VERIQ aims to progress from a token foundation toward a practical trust and verification platform. The recommended path is to publish transparent technical information, define a rigorous verification protocol, deliver and test a business-verification MVP, protect user data, and then expand carefully into developer APIs and digital-authenticity research.","Bodyv"),
+          P("The roadmap should evolve in public. When priorities change, the team should update the GitHub roadmap, explain the reason and preserve a clear record of completed work and changed commitments.","Bodyv"),
+          Spacer(1,8*mm),HRFlowable(width="100%",thickness=1,color=blue,spaceBefore=2,spaceAfter=8),
+          P("VERIQ — Trust & Verification Network","SubCover"),
+          P("Project Roadmap | Version 1.0 | November 2026","Smallv")]
+
+doc.build(story,onFirstPage=footer,onLaterPages=footer)
+
+print(f"PDF created successfully: {out}")
