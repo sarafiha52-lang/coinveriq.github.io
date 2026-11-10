@@ -4,247 +4,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veriq Token Ecosystem</title>
-    <script src="https://cloudflare.com"></script>
+    <!-- Tailwind CSS for high-fidelity professional utility styling -->
+    <script src="https://jsdelivr.net"></script>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for professional crisp iconography -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle at top center, #1e1b4b 0%, #0f172a 100%);
         }
-        .container {
-            max-width: 900px;
-            width: 100%;
-            background: #1e293b;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        header {
-            text-align: center;
-            border-bottom: 2px solid #334155;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-        h1 { color: #38bdf8; margin: 0; }
-        .section {
-            margin-bottom: 25px;
-            padding: 15px;
-            background: #0f172a;
-            border-radius: 8px;
-            border-left: 4px solid #38bdf8;
-        }
-        
-        /* Interactive Nav Bar Tabs Styling */
-        .tab-navigation {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            justify-content: center;
-            background: #0f172a;
-            padding: 10px;
-            border-radius: 8px;
-        }
-        .nav-btn {
-            background-color: transparent;
-            color: #94a3b8;
-            border: 2px solid #334155;
-            padding: 10px 25px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .nav-btn:hover {
-            color: #38bdf8;
-            border-color: #38bdf8;
-        }
-        .nav-btn.active {
-            background-color: #38bdf8;
-            color: #0f172a;
-            border-color: #38bdf8;
-        }
-
-        /* Hide content segments by default */
         .tab-content {
             display: none;
-            animation: fadeIn 0.4s ease;
         }
-        .tab-content.show {
+        .tab-content.active {
             display: block;
+            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-
-        /* Regular Web UI elements */
-        .wallet-btn {
-            background-color: #e2e8f0;
-            color: #0f172a;
-            border: none;
-            padding: 10px 20px;
-            font-size: 15px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .wallet-btn:hover { background-color: #cbd5e1; }
-        
-        ol, ul {
-            padding-left: 20px;
-            line-height: 1.6;
-        }
-        li {
-            margin-bottom: 8px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 12px;
-            color: #64748b;
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .roadmap-line::before {
+            content: '';
+            position: absolute;
+            left: 21px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #38bdf8, #334155);
         }
     </style>
 </head>
-<body>
+<body class="text-slate-200 min-h-screen antialiased selection:bg-indigo-500 selection:text-white pb-12">
 
-<div class="container">
-    <header>
-        <h1>VERIQ TOKEN ECOSYSTEM</h1>
-        <p>Decentralized Trust Badges & Quantum-AI Deepfake Safeguards</p>
-    </header>
+    <!-- Top Glow Effect -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[350px] bg-indigo-500/10 blur-[120px] pointer-events-none rounded-full"></div>
 
-    <!-- Interactive Navigation Control Unit -->
-    <div class="tab-navigation">
-        <button class="nav-btn active" onclick="switchTab('overview')">Overview</button>
-        <button class="nav-btn" onclick="switchTab('utility')">Ecosystem Utility</button>
-        <button class="nav-btn" onclick="switchTab('roadmap')">Project Roadmap</button>
-    </div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 relative z-10">
+        
+        <!-- Header Banner Section -->
+        <header class="text-center mb-12">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-xs font-semibold text-sky-400 uppercase tracking-wider mb-4">
+                <i class="fa-solid fa-shield-halved text-xs"></i> Next-Gen Web3 Infrastructure
+            </div>
+            <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">
+                <span class="gradient-text">VERIQ TOKEN ECOSYSTEM</span>
+            </h1>
+            <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto font-medium">
+                Decentralized Trust Badges & Quantum-AI Deepfake Safeguards
+            </p>
+        </header>
 
-    <!-- TAB 1: OVERVIEW PANEL -->
-    <div id="overview" class="tab-content show">
-        <div class="section">
-            <h3>Ecosystem Core Information</h3>
-            <p><strong>Token Name:</strong> Veriq</p>
-            <p><strong>Symbol:</strong> VRQ</p>
-            <p><strong>Total Hard Cap Supply:</strong> 190,000,000 $VERIQ</p>
-            <p><strong>Contract Protocol:</strong> Fixed Supply Deflationary Architecture</p>
-        </div>
+        <!-- Premium Modern Navigation Links -->
+        <nav class="flex p-1.5 rounded-xl bg-slate-950/60 border border-slate-800/80 max-w-xl mx-auto mb-10 shadow-inner">
+            <button onclick="switchTab('overview', this)" class="tab-btn flex-1 flex items-center justify-center gap-2 py-3 text-sm font-semibold rounded-lg text-indigo-400 bg-slate-900 border border-slate-800 shadow-sm transition-all duration-300 cursor-pointer">
+                <i class="fa-solid fa-cubes"></i> Overview
+            </button>
+            <button onclick="switchTab('utility', this)" class="tab-btn flex-1 flex items-center justify-center gap-2 py-3 text-sm font-medium rounded-lg text-slate-400 hover:text-slate-200 transition-all duration-300 cursor-pointer">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Utility
+            </button>
+            <button onclick="switchTab('roadmap', this)" class="tab-btn flex-1 flex items-center justify-center gap-2 py-3 text-sm font-medium rounded-lg text-slate-400 hover:text-slate-200 transition-all duration-300 cursor-pointer">
+                <i class="fa-solid fa-route"></i> Roadmap
+            </button>
+        </nav>
 
-        <div class="section">
-            <h3>Wallet Hub</h3>
-            <button class="wallet-btn" id="connectWallet">Connect Web3 Wallet</button>
-            <p id="walletAddress" style="margin-top: 10px; font-family: monospace; color: #38bdf8;"></p>
-        </div>
-    </div>
+        <!-- Main Content Area Wrapper -->
+        <main class="glass-panel rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+            
+            <!-- TAB 1: OVERVIEW PANEL -->
+            <div id="overview" class="tab-content active">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                    
+                    <!-- Token Metrics Details Card -->
+                    <div class="bg-slate-950/40 border border-slate-800/60 p-6 rounded-xl">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-8 h-8 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-400 border border-sky-500/20">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white tracking-wide">Ecosystem Core Information</h3>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center py-2.5 border-b border-slate-900">
+                                <span class="text-sm text-slate-400 font-medium">Token Name</span>
+                                <span class="text-sm text-white font-semibold">Veriq</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2.5 border-b border-slate-900">
+                                <span class="text-sm text-slate-400 font-medium">Symbol</span>
+                                <span class="text-sm text-sky-400 font-bold bg-sky-500/10 px-2 py-0.5 rounded border border-sky-500/20">$VRQ</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2.5 border-b border-slate-900">
+                                <span class="text-sm text-slate-400 font-medium">Total Hard Cap Supply</span>
+                                <span class="text-sm text-white font-mono font-bold tracking-wide">190,000,000 $VERIQ</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-2.5">
+                                <span class="text-sm text-slate-400 font-medium">Contract Protocol</span>
+                                <span class="text-sm text-indigo-300 font-medium text-right">Fixed Supply Deflationary Architecture</span>
+                            </div>
+                        </div>
+                    </div>
 
-    <!-- TAB 2: UTILITY PANEL -->
-    <div id="utility" class="tab-content">
-        <div class="section">
-            <h3>1. Veriq Verified Badge (E-Commerce Trust)</h3>
-            <p>Online stores aur E-commerce businesses $VERIQ tokens stake karke decentralized <strong>"Veriq Verified Badge"</strong> claim kar sakte hain. Jab customer aapke store par aayega, toh is badge ki wajah se use product clarity, real-time storefront protection aur ultimate security milegi jis se purchase conversion barh jayegi.</p>
-        </div>
-        <div class="section">
-            <h3>2. QUANTIFICIAL (Quantum + AI Engine)</h3>
-            <p>Humara dynamic technology stack Quantum Computing aur Artificial Intelligence ko mila kar deepfake detection platform faraham karta hai. Yeh real-time computing backend advanced AI images, fake videos aur digital documents ko foran intercept kar ke detect karta hai aur unhe absolute clarity ke sath filter karta hai.</p>
-        </div>
-        <div class="section">
-            <h3>3. Public Micro-Services</h3>
-            <p>Veriq engineering architecture future mein simple, low-cost aur reliable everyday application systems release karegi jis se aam public ko reasonable optimization charges ke sath digital utilities direct access ho saken.</p>
-        </div>
-    </div>
+                    <!-- Secure Connect Gateway Card -->
+                    <div class="bg-gradient-to-br from-indigo-950/40 to-slate-950/40 border border-indigo-500/10 p-6 rounded-xl flex flex-col justify-between h-full min-h-[260px]">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400 border border-indigo-500/20">
+                                    <i class="fa-solid fa-wallet"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-white tracking-wide">Wallet Hub</h3>
+                            </div>
+                            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                                Link your secure Web3 wallet layout directly to verify active holdings and interact with decentralized framework governance gates safely.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <button id="connectWallet" class="w-full flex items-center justify-center gap-2 py-3 px-4 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-slate-950 font-bold text-sm tracking-wide rounded-lg transition-all duration-300 transform active:scale-[0.99] shadow-lg shadow-indigo-500/10 cursor-pointer">
+                                <i class="fa-solid fa-plug-circle-check"></i> Connect Web3 Wallet
+                            </button>
+                            <div id="walletAddress" class="mt-4 p-3 bg-slate-950/80 rounded-lg border border-slate-800 text-center font-mono text-xs text-emerald-400 hidden break-all"></div>
+                        </div>
+                    </div>
 
-    <!-- TAB 3: ROADMAP PANEL -->
-    <div id="roadmap" class="tab-content">
-        <div class="section">
-            <h3>Phase 1: Genesis & Smart Contract Rollout</h3>
-            <ul>
-                <li>Core deployment of the 190M capped $VERIQ immutable smart contract ledger.</li>
-                <li>Finalization of the decentralized mathematical verification standards for e-commerce store staking modules.</li>
-                <li>Official global publication of the ecosystem whitepaper documentation.</li>
-            </ul>
-        </div>
-        <div class="section">
-            <h3>Phase 2: Decentralized Inception & Core Tracking</h3>
-            <ul>
-                <li>Initial Decentralized Exchange (DEX) liquidity deployment with fixed time lock constraints.</li>
-                <li>Strategic global registration tracking rollout with index networks (CoinMarketCap & CoinGecko).</li>
-                <li>Beta pilot activation of the e-commerce Veriq Verified Trust Badge integration layer.</li>
-            </ul>
-        </div>
-        <div class="section">
-            <h3>Phase 3: Deep Quantum-AI Framework Audit</h3>
-            <ul>
-                <li>Alpha platform construction combining deep learning convolutional architectures with custom cryptographic models.</li>
-                <li>Execution of high-frequency sandbox diagnostics on targeted algorithmic image/video manipulations.</li>
-                <li>Launch of core operational staking vaults for distributed validator consensus nodes.</li>
-            </ul>
-        </div>
-        <div class="section">
-            <h3>Phase 4: Scaling, Production & Public Governance</h3>
-            <ul>
-                <li>Production-ready global release of the decentralized deepfake validation API ecosystem.</li>
-                <li>Deployment of straightforward public microservice apps with highly optimized fee parameters.</li>
-                <li>Transition of architecture updates to community-led DAO voting frameworks.</li>
-            </ul>
-        </div>
-    </div>
+                </div>
+            </div>
 
-    <div class="footer">
-        &copy; 2026 Veriq Network. All Rights Secured under Decentralized Frameworks.
-    </div>
-</div>
-
-<script>
-    // Tab Switching Logic Controller
-    function switchTab(tabId) {
-        // Sub-step 1: Remove active class formatting from all navigation buttons
-        const navButtons = document.querySelectorAll('.nav-btn');
-        navButtons.forEach(btn => btn.classList.remove('active'));
-
-        // Sub-step 2: Hide all conditional content segments
-        const tabContents = document.querySelectorAll('.tab-content');
-        tabContents.forEach(content => content.classList.remove('show'));
-
-        // Sub-step 3: Activate target control element
-        const selectedContent = document.getElementById(tabId);
-        if(selectedContent) {
-            selectedContent.classList.add('show');
-        }
-
-        // Highlight matching button item based on active selection state
-        const targetButton = Array.from(navButtons).find(btn => btn.getAttribute('onclick').includes(tabId));
-        if(targetButton) {
-            targetButton.classList.add('active');
-        }
-    }
-
-    // Standard Web3 Integration Handler
-    const connectBtn = document.getElementById('connectWallet');
-    const walletText = document.getElementById('walletAddress');
-
-    if(connectBtn) {
-        connectBtn.addEventListener('click', async () => {
-            if (window.ethereum) {
-                try {
-                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                    walletText.innerText = "Active Account Address: " + accounts[0];
-                } catch (error) {
-                    walletText.innerText = "Connection Refused: " + error.message;
-                }
-            } else {
-                alert("Web3 Wallet not detected. Please install MetaMask or another extensions layer.");
-            }
-        });
-    }
-</script>
-</body>
-</html>
+            <!-- TAB 2: UTILITY PANEL -->
+            <div id="utility" class="tab-content">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Utility Item 1 -->
+                    <div class="bg-slate-950/30 border border-slate-800/60 p-6 rounded-xl hover:border-slate-700/80 transition-all duration-300 flex flex-col">
+                        <div class="w-10 h-10 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-400 border border-sky-500/20 mb-5 text-lg">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <h4 class="text-base font-bold text-white mb-3">1. Veriq Verified Badge (E-Commerce Trust)</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed font-normal">
+                            Online stores aur E-commerce businesses $VERIQ tokens stake karke decentralized <strong>"Veriq Verified Badge"</strong> claim kar sakte hain. Jab customer aapke store par aayega, toh is badge ki wajah se use product clarity, real-time storefront protection aur ultimate security milegi jis se purchase conversion barh jayegi.
