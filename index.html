@@ -1,152 +1,124 @@
-<!DOCTYPE html>
+from pathlib import Path
+import zipfile, textwrap, os
+
+root = Path("/mnt/data/VERIQ_GitHub_Website")
+(root / "assets").mkdir(parents=True, exist_ok=True)
+
+files = {
+"index.html": r'''<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veriq Network — Quantum-AI Deepfake Safeguards & Trust Badge Ecosystem</title>
-    <!-- Tailwind CSS Engine -->
-    <script src="https://jsdelivr.net"></script>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cloudflare.com">
-    
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #030712;
-        }
-        .heading-font {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-        .crypto-gradient-bg {
-            background: radial-gradient(circle at 50% -20%, rgba(56, 189, 248, 0.15) 0%, rgba(99, 102, 241, 0.05) 40%, rgba(3, 7, 18, 0) 70%);
-        }
-        .glass-card {
-            background: rgba(17, 24, 39, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .glass-card:hover {
-            border-color: rgba(56, 189, 248, 0.2);
-            box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.1);
-        }
-        .neon-glow {
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
-        }
-    </style>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="VERIQ — a trust and verification ecosystem exploring business verification and AI-powered media authenticity.">
+  <meta name="theme-color" content="#080d18">
+  <title>VERIQ — Trust, Verified</title>
+  <link rel="icon" href="assets/veriq-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="text-slate-300 min-h-screen crypto-gradient-bg antialiased selection:bg-sky-500 selection:text-slate-950">
+<body>
+<header class="site-header">
+  <a class="brand" href="#home" aria-label="VERIQ home"><img src="assets/veriq-mark.svg" alt=""><span>VERIQ</span></a>
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  <nav class="nav">
+    <a href="#about">About</a><a href="#utility">Utility</a><a href="#technology">Technology</a><a href="#roadmap">Roadmap</a><a href="#token">Token</a><a href="#whitepaper">Whitepaper</a><a class="nav-cta" href="#founders">Founders</a>
+  </nav>
+</header>
+<main>
+<section class="hero" id="home">
+  <div class="hero-grid"></div><div class="hero-content">
+    <div class="eyebrow"><span class="pulse"></span> TRUST &amp; VERIFICATION ECOSYSTEM</div>
+    <h1>Trust should be<br><span>verifiable.</span></h1>
+    <p class="hero-copy">VERIQ is building toward a more transparent digital environment — helping people assess online businesses and explore tools for identifying manipulated digital media.</p>
+    <div class="hero-actions"><a class="button primary" href="#utility">Explore the ecosystem <span>↗</span></a><a class="button secondary" href="#whitepaper">Read the whitepaper</a></div>
+    <div class="hero-note">Ethereum-based token · Open development · Verification-focused vision</div>
+  </div>
+  <div class="hero-art" aria-hidden="true"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="core"><img src="assets/veriq-mark.svg" alt=""></div><div class="node node-one">IDENTITY</div><div class="node node-two">SIGNAL</div><div class="node node-three">TRUST</div></div>
+</section>
+<section class="ticker"><span>VERIFICATION</span><i>✳</i><span>TRANSPARENCY</span><i>✳</i><span>DIGITAL TRUST</span><i>✳</i><span>AUTHENTICITY</span></section>
+<section class="section intro" id="about"><div class="section-label">01 / THE PROJECT</div><div class="intro-layout"><h2>A stronger trust layer<br>for the digital world.</h2><div><p>Online commerce and digital media make it easier than ever to connect — and harder to know what is genuine. VERIQ's long-term vision is to develop accessible verification tools that can help users make better-informed decisions.</p><p class="muted">The ecosystem is under development. Proposed products and roadmap milestones are clearly distinguished from features already deployed.</p></div></div></section>
+<section class="section" id="utility"><div class="section-label">02 / ECOSYSTEM UTILITY</div><div class="section-heading"><h2>Designed around<br><span>real-world trust.</span></h2><p>Three connected areas of exploration, with product delivery progressing in phases.</p></div>
+  <div class="cards">
+    <article class="feature-card"><div class="card-icon">✓</div><div class="card-index">UTILITY 01</div><h3>Veriq Verified Badge</h3><p>A proposed verification badge for eligible online stores. The aim is to help shoppers identify businesses that have completed defined checks and access a public verification profile.</p><span class="status planned">IN DEVELOPMENT / PROPOSED</span></article>
+    <article class="feature-card"><div class="card-icon">⌁</div><div class="card-index">UTILITY 02</div><h3>Media authenticity</h3><p>Research direction for AI-assisted detection of manipulated images, videos and other digital media, helping users assess authenticity signals and potential forgery.</p><span class="status research">RESEARCH ROADMAP</span></article>
+    <article class="feature-card"><div class="card-icon">◇</div><div class="card-index">UTILITY 03</div><h3>Open verification tools</h3><p>A longer-term direction for accessible decentralized applications and APIs that make verification information easier to inspect and integrate.</p><span class="status planned">FUTURE DEVELOPMENT</span></article>
+  </div>
+</section>
+<section class="tech-band" id="technology"><div class="section tech-inner"><div><div class="section-label">03 / TECHNOLOGY</div><h2>Research-led.<br><span>Evidence-first.</span></h2><p>VERIQ's technology roadmap explores combining AI-based analysis with advanced computational approaches for media authenticity research. The goal is to build tools that communicate confidence and limitations clearly — not to promise perfect detection.</p><a class="text-link" href="#roadmap">View technology roadmap ↗</a></div><div class="tech-visual"><div class="scan-ring"></div><div class="scan-core">V<span>Q</span></div><div class="scan-caption">SIGNAL ANALYSIS<br><b>QUANTIFICIAL</b><small>Concept / research initiative</small></div></div></div></section>
+<section class="section" id="roadmap"><div class="section-label">04 / ROADMAP</div><div class="section-heading"><h2>Build in phases.<br><span>Prove each step.</span></h2><p>Roadmap overview based on the current project plan. Timing and delivery are subject to change.</p></div>
+  <div class="timeline">
+    <article class="phase"><div class="phase-marker">01</div><div><div class="phase-meta">FOUNDATION</div><h3>Project foundation &amp; verification framework</h3><ul><li>Publish project documentation and whitepaper</li><li>Define eligibility and review criteria for the Verified Badge</li><li>Establish public project and token information</li></ul></div><span class="phase-state">FOUNDATION</span></article>
+    <article class="phase"><div class="phase-marker">02</div><div><div class="phase-meta">ECOSYSTEM EXPANSION</div><h3>Exchange access &amp; badge pilot</h3><ul><li>Explore decentralized exchange availability</li><li>Run an initial Verified Badge pilot</li><li>Prepare applications for data and market-information platforms, where eligible</li></ul></div><span class="phase-state">PLANNED</span></article>
+    <article class="phase"><div class="phase-marker">03</div><div><div class="phase-meta">RESEARCH &amp; DEVELOPMENT</div><h3>QUANTIFICIAL research alpha</h3><ul><li>Develop an early media-authenticity research prototype</li><li>Evaluate image and media manipulation detection</li><li>Research staking and verification mechanics</li></ul></div><span class="phase-state">PLANNED</span></article>
+    <article class="phase"><div class="phase-marker">04</div><div><div class="phase-meta">PUBLIC ACCESS</div><h3>Tools, integrations &amp; community governance</h3><ul><li>Explore public dApp and API access</li><li>Develop consumer-facing verification utilities</li><li>Evaluate a DAO or community governance model</li></ul></div><span class="phase-state">FUTURE</span></article>
+  </div>
+</section>
+<section class="token-section" id="token"><div class="section token-inner"><div><div class="section-label">05 / TOKEN INFORMATION</div><h2>VERIQ<br><span>Token overview.</span></h2><p>The VRQ token is deployed as an ERC-20 token on Ethereum. Token ownership does not itself guarantee access to a badge, service, profit, or governance rights.</p></div><div class="token-panel"><div class="token-top"><span>VERIQ TOKEN</span><span class="chain">ETHEREUM / ERC-20</span></div><div class="token-symbol">VRQ</div><div class="token-stats"><div><small>TOKEN NAME</small><b>Veriq</b></div><div><small>SYMBOL</small><b>VRQ</b></div><div><small>DECIMALS</small><b>18</b></div><div><small>FIXED SUPPLY</small><b>190,000,000</b></div></div><div class="token-foot">No additional minting function in the published token contract.</div><a class="button secondary full" href="#links">Contract &amp; official links</a></div></div></section>
+<section class="section whitepaper" id="whitepaper"><div class="section-label">06 / DOCUMENTATION</div><div class="doc-box"><div><div class="doc-tag">VERIQ / WHITEPAPER</div><h2>Understand the<br><span>complete vision.</span></h2><p>Explore the project's concept, proposed utility, technical direction, token information and development roadmap.</p><div class="doc-actions"><a class="button primary" href="whitepaper.html">Read online ↗</a><a class="button secondary" href="docs/VERIQ-Whitepaper.pdf" target="_blank" rel="noopener">Download PDF ↓</a></div><small class="muted">Add the final approved PDF to <code>docs/VERIQ-Whitepaper.pdf</code> before publishing.</small></div><div class="doc-art"><div class="doc-sheet"><div class="doc-logo">V<span>Q</span></div><div class="doc-line wide"></div><div class="doc-line"></div><div class="doc-line short"></div><div class="doc-rule"></div><div class="doc-line wide"></div><div class="doc-line"></div><div class="doc-line short"></div><div class="doc-stamp">WHITEPAPER<br>2026</div></div></div></div></section>
+<section class="section founders" id="founders"><div class="section-label">07 / LEADERSHIP</div><div class="founder-layout"><div><h2>Built with a<br><span>long-term vision.</span></h2><p>VERIQ's founder and leadership information will be published here once the official names, roles and approved biographies are provided.</p></div><div class="founder-placeholder"><div class="avatar">V</div><div><b>Founder &amp; Leadership</b><p>Official profile announcement pending.</p><span class="status planned">PROFILE TO BE ADDED</span></div></div></div></section>
+<section class="section links-section" id="links"><div class="section-label">08 / OFFICIAL RESOURCES</div><h2>Follow the project.</h2><div class="link-grid"><a href="https://github.com/" target="_blank" rel="noopener"><span>GitHub</span><b>↗</b><small>Source code &amp; development</small></a><a href="#" class="placeholder-link"><span>Ethereum contract</span><b>↗</b><small>Add verified contract address</small></a><a href="#" class="placeholder-link"><span>Community</span><b>↗</b><small>Official channels to be announced</small></a></div><p class="disclaimer">Important: VERIQ is an evolving project. Features marked proposed, planned, research or future are not represented as currently live. This website is informational only and is not financial, investment, legal or tax advice. Digital assets involve risk. Always verify contract addresses and project announcements through official channels.</p></section>
+</main>
+<footer><a class="brand" href="#home"><img src="assets/veriq-mark.svg" alt=""><span>VERIQ</span></a><span>© 2026 VERIQ. All rights reserved.</span><a href="#home">Back to top ↑</a></footer>
+<script src="script.js"></script>
+</body></html>''',
+"styles.css": r'''*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:#080d18;color:#edf3ff;font-family:"DM Sans",sans-serif}a{color:inherit;text-decoration:none}.site-header{height:78px;padding:0 7vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12;background:#080d18eF;backdrop-filter:blur(16px);position:sticky;top:0;z-index:20}.brand{display:flex;align-items:center;gap:10px;font:700 22px "Space Grotesk";letter-spacing:.12em}.brand img{width:30px}.nav{display:flex;align-items:center;gap:27px;color:#aab6cb;font-size:12px}.nav a:hover,.text-link:hover{color:#74baff}.nav-cta{padding:11px 16px;border:1px solid #398bff70;border-radius:5px;color:#dceaff}.menu-toggle{display:none;background:none;border:0;color:white;font-size:24px}.hero{min-height:660px;position:relative;overflow:hidden;padding:120px 7vw 90px;display:flex;align-items:center}.hero-grid{position:absolute;inset:0;background-image:linear-gradient(#477bb312 1px,transparent 1px),linear-gradient(90deg,#477bb312 1px,transparent 1px);background-size:58px 58px;mask-image:linear-gradient(90deg,black,transparent 90%)}.hero:after{content:"";position:absolute;width:650px;height:650px;right:3%;top:0;background:radial-gradient(circle,#0c4c9b40,transparent 68%)}.hero-content{position:relative;z-index:2;max-width:600px}.eyebrow,.section-label,.card-index,.phase-meta,.doc-tag{font-size:10px;letter-spacing:.2em;color:#64aaff;font-weight:700}.pulse{display:inline-block;width:7px;height:7px;border-radius:50%;background:#48d6b1;box-shadow:0 0 12px #48d6b1;margin-right:9px}.hero h1,.section h2{font:600 clamp(44px,6vw,76px)/1.04 "Space Grotesk";letter-spacing:-.055em;margin:24px 0}.hero h1 span,.section h2 span{color:#65aaff}.hero-copy{max-width:520px;color:#aab6cb;font-size:16px;line-height:1.8}.hero-actions,.doc-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.button{display:inline-flex;align-items:center;justify-content:center;gap:14px;padding:14px 19px;border-radius:4px;font-size:12px;font-weight:700;transition:.2s}.button:hover{transform:translateY(-2px)}.primary{background:#287ee8;color:white;box-shadow:0 8px 30px #287ee833}.secondary{border:1px solid #7890b54a;color:#dce8fc}.hero-note{margin-top:35px;color:#73829b;font-size:10px;letter-spacing:.08em}.hero-art{position:absolute;right:10%;top:50%;transform:translateY(-50%);width:380px;height:380px;z-index:1}.orbit{position:absolute;border:1px solid #3d8ee94a;border-radius:50%;inset:0;transform:rotate(-24deg) scaleY(.56)}.orbit-b{inset:45px;transform:rotate(55deg) scaleY(.8);border-color:#55c4ff38}.core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:120px;height:120px;border:1px solid #64aaff88;border-radius:28px;background:linear-gradient(145deg,#153d70,#0b1425);display:grid;place-items:center;box-shadow:0 0 80px #1675d955}.core img{width:65px}.node{position:absolute;background:#0d1a2e;border:1px solid #3677ba66;color:#a9d3ff;padding:8px 12px;font-size:9px;letter-spacing:.16em;border-radius:3px}.node-one{top:30px;left:50%}.node-two{bottom:45px;left:0}.node-three{bottom:40px;right:0}.ticker{height:60px;border-block:1px solid #ffffff12;display:flex;align-items:center;justify-content:space-evenly;color:#8392aa;font-size:10px;letter-spacing:.22em}.ticker i{color:#4c9bfa;font-style:normal}.section{padding:105px 9vw}.intro-layout,.section-heading,.tech-inner,.token-inner,.founder-layout{display:grid;grid-template-columns:1fr 1fr;gap:9%;align-items:center}.intro h2,.section h2{font-size:clamp(38px,4.4vw,58px)}.intro-layout p,.section-heading p,.tech-inner p,.token-inner p,.founder-layout p{color:#a5b2c8;line-height:1.85;font-size:14px}.muted{color:#73839c!important;font-size:12px!important}.section-heading{margin-bottom:40px}.section-heading h2{margin-bottom:0}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.feature-card{min-height:300px;padding:28px;border:1px solid #ffffff17;background:linear-gradient(145deg,#101b2d,#0b1220);position:relative}.card-icon{width:42px;height:42px;display:grid;place-items:center;border:1px solid #398bff75;color:#73b7ff;font-size:22px;margin-bottom:28px}.card-index{color:#71849f;font-size:9px}.feature-card h3{font:600 22px "Space Grotesk";margin:12px 0}.feature-card p{font-size:12px;line-height:1.8;color:#9eacc1}.status{display:inline-block;margin-top:12px;font-size:8px;letter-spacing:.13em;padding:7px 9px;border:1px solid #ffffff25;color:#a8b7cc}.status.planned{border-color:#b18b4c55;color:#d8b77a}.status.research{border-color:#438fce66;color:#85c7ff}.tech-band{background:linear-gradient(110deg,#0d1d34,#0b1220);border-block:1px solid #ffffff12}.tech-inner{grid-template-columns:1.1fr .9fr}.tech-inner h2{margin-top:22px}.text-link{display:inline-block;margin-top:20px;color:#70b5ff;font-size:12px;font-weight:700}.tech-visual{height:350px;position:relative;display:grid;place-items:center;background:radial-gradient(circle,#17447755,transparent 65%)}.scan-ring{width:260px;height:260px;border:1px solid #5ba9ff66;border-radius:50%;box-shadow:0 0 0 25px #2c79b00d,0 0 0 55px #2c79b00a;position:absolute}.scan-core{width:120px;height:120px;border-radius:50%;display:grid;place-items:center;background:#102a4a;border:1px solid #62aaff99;font:700 38px "Space Grotesk";box-shadow:0 0 60px #268cff55}.scan-core span,.doc-logo span{color:#67b5ff}.scan-caption{position:absolute;bottom:22px;text-align:center;font-size:9px;letter-spacing:.2em;color:#8398b7;line-height:1.9}.scan-caption b{display:block;color:#a8d3ff;font-size:12px}.scan-caption small{letter-spacing:.05em}.timeline{border-top:1px solid #ffffff20}.phase{display:grid;grid-template-columns:70px 1fr 140px;gap:20px;padding:30px 0;border-bottom:1px solid #ffffff20;align-items:start}.phase-marker{font:600 24px "Space Grotesk";color:#5faaff}.phase-meta{font-size:9px;color:#728ba9}.phase h3{font:600 21px "Space Grotesk";margin:8px 0}.phase ul{padding-left:18px;color:#9eacc1;font-size:12px;line-height:2}.phase-state{justify-self:end;color:#8ca0bb;font-size:9px;letter-spacing:.15em;border:1px solid #ffffff24;padding:8px 10px}.token-section{background:#0b1423;border-block:1px solid #ffffff12}.token-inner{grid-template-columns:1fr .9fr}.token-panel{padding:30px;background:linear-gradient(145deg,#142844,#0c1627);border:1px solid #428bd65c;box-shadow:0 20px 70px #0004}.token-top{display:flex;justify-content:space-between;color:#83a0c4;font-size:9px;letter-spacing:.15em}.chain{color:#68b4ff}.token-symbol{font:700 62px "Space Grotesk";margin:25px 0;color:#f3f7ff}.token-stats{display:grid;grid-template-columns:1fr 1fr;gap:23px;padding:22px 0;border-block:1px solid #ffffff19}.token-stats div{display:flex;flex-direction:column;gap:7px}.token-stats small{font-size:8px;color:#7e94b2;letter-spacing:.16em}.token-stats b{font:600 16px "Space Grotesk"}.token-foot{font-size:10px;color:#a2b1c8;line-height:1.6;margin:18px 0}.full{width:100%}.doc-box{margin-top:30px;border:1px solid #ffffff1b;background:linear-gradient(110deg,#101e32,#0b1322);padding:50px;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:40px}.doc-box h2{font-size:48px}.doc-box p{max-width:430px;color:#a3b1c6;font-size:13px;line-height:1.8}.doc-box code{color:#8ebfff}.doc-art{display:flex;justify-content:center}.doc-sheet{width:190px;height:245px;background:linear-gradient(145deg,#e8f0fc,#aebed4);color:#10213a;padding:23px;position:relative;transform:rotate(5deg);box-shadow:15px 20px 50px #0007}.doc-logo{font:700 26px "Space Grotesk";margin-bottom:25px}.doc-line{height:4px;width:75%;background:#6f86a4;margin:10px 0;opacity:.45}.doc-line.wide{width:100%}.doc-line.short{width:48%}.doc-rule{height:1px;background:#536b8c;margin:25px 0}.doc-stamp{position:absolute;bottom:20px;right:18px;font:700 9px "Space Grotesk";letter-spacing:.12em;color:#245c9c}.founder-layout{grid-template-columns:1fr 1fr}.founder-placeholder{display:flex;align-items:center;gap:20px;padding:25px;border:1px solid #ffffff1c;background:#0e192a}.avatar{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:#173a63;color:#8cc5ff;font:700 24px "Space Grotesk"}.founder-placeholder b{font:600 17px "Space Grotesk"}.founder-placeholder p{font-size:11px;margin:6px 0}.links-section{padding-top:70px}.links-section h2{font-size:42px}.link-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:35px 0}.link-grid a{padding:22px;border:1px solid #ffffff1c;background:#0d1829;display:grid;grid-template-columns:1fr auto;gap:9px}.link-grid a span{font:600 16px "Space Grotesk"}.link-grid a b{color:#6db6ff}.link-grid a small{grid-column:1/-1;color:#8b9bb3;font-size:10px}.placeholder-link{opacity:.7}.disclaimer{border-top:1px solid #ffffff1a;padding-top:22px;color:#71829b;font-size:10px;line-height:1.8}footer{padding:28px 7vw;border-top:1px solid #ffffff17;display:flex;align-items:center;justify-content:space-between;color:#71829b;font-size:10px}footer .brand{color:#edf3ff;font-size:17px}footer .brand img{width:24px}
+@media(max-width:900px){.nav{gap:13px}.hero-art{right:-8%;opacity:.45}.hero-content{max-width:560px}.section{padding:75px 7vw}.cards{grid-template-columns:1fr}.feature-card{min-height:0}.intro-layout,.section-heading,.tech-inner,.token-inner,.founder-layout{grid-template-columns:1fr;gap:20px}.doc-box{padding:30px;grid-template-columns:1fr}.doc-art{display:none}}
+@media(max-width:650px){.site-header{padding:0 6vw}.menu-toggle{display:block}.nav{display:none;position:absolute;top:78px;left:0;right:0;background:#0b1423;padding:20px 7vw;flex-direction:column;align-items:flex-start;border-bottom:1px solid #ffffff22}.nav.open{display:flex}.hero{padding:100px 7vw 80px;min-height:620px}.hero-art{width:280px;height:280px;right:-105px;top:65%;opacity:.25}.hero h1{font-size:52px}.ticker{font-size:8px;letter-spacing:.1em}.section h2{font-size:42px}.phase{grid-template-columns:42px 1fr}.phase-state{grid-column:2;justify-self:start}.doc-box h2{font-size:40px}.link-grid{grid-template-columns:1fr}footer{gap:15px;flex-wrap:wrap}.token-stats{gap:15px}.token-stats b{font-size:14px}}
+''',
+"script.js": r'''const toggle=document.querySelector(".menu-toggle");const nav=document.querySelector(".nav");toggle?.addEventListener("click",()=>{const open=nav.classList.toggle("open");toggle.setAttribute("aria-expanded",String(open));});document.querySelectorAll(".nav a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("open");toggle?.setAttribute("aria-expanded","false");}));document.querySelectorAll(".placeholder-link").forEach(a=>a.addEventListener("click",e=>e.preventDefault()));''',
+"whitepaper.html": r'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VERIQ Whitepaper — Project Overview</title><link rel="stylesheet" href="styles.css"><style>.paper{max-width:900px;margin:auto;padding:80px 7vw}.paper h1{font:600 52px "Space Grotesk"}.paper h2{font:600 25px "Space Grotesk";margin-top:45px}.paper p,.paper li{color:#aab6cb;line-height:1.9;font-size:14px}.paper .notice{border-left:3px solid #d2a75e;padding:14px 20px;background:#111d2d;color:#c3cde0;font-size:12px}</style></head><body><header class="site-header"><a class="brand" href="index.html"><img src="assets/veriq-mark.svg" alt=""><span>VERIQ</span></a><a class="nav-cta" href="index.html">← Back to website</a></header><main class="paper"><div class="section-label">VERIQ / PROJECT DOCUMENTATION</div><h1>Trust &amp; Verification Network</h1><p class="muted">Project overview · November 2026 · Public information draft</p><div class="notice">This is a concise public project overview, not a substitute for the final approved technical whitepaper. Planned and research-stage features are labelled accordingly.</div>
+<h2>1. Abstract</h2><p>VERIQ is a project focused on improving trust in digital commerce and online information. Its long-term direction includes business verification, public verification profiles and research into AI-assisted detection of manipulated digital media. The project aims to make useful trust signals easier for people and platforms to inspect.</p>
+<h2>2. The problem</h2><p>Consumers may struggle to assess unfamiliar online stores, while manipulated images and videos can make digital information harder to evaluate. Existing trust signals can be fragmented, difficult to verify or unavailable in a consistent public format.</p>
+<h2>3. Proposed ecosystem</h2><p><b>Veriq Verified Badge:</b> A proposed badge for eligible online businesses that complete a defined review process. The intended outcome is a public profile that communicates what was checked and when. A badge should not be interpreted as a guarantee of future conduct, product quality or transaction outcome.</p><p><b>Media authenticity research:</b> VERIQ's QUANTIFICIAL research direction explores AI and advanced computational methods for detecting signs of image, video or media manipulation. Detection systems can make errors; results should be presented with limitations and appropriate confidence information.</p><p><b>Open tools:</b> Longer-term plans include dApps, APIs and consumer-facing utilities for accessing verification information.</p>
+<h2>4. VRQ token information</h2><ul><li>Token name: Veriq</li><li>Symbol: VRQ</li><li>Network: Ethereum</li><li>Standard: ERC-20</li><li>Decimals: 18</li><li>Fixed supply: 190,000,000 VRQ</li><li>Minting: The published token contract has no additional minting function.</li></ul><p>Token ownership alone does not guarantee a Verified Badge, access to a product, a financial return or governance rights. Any future staking or fee mechanism requires separate implementation and public documentation.</p>
+<h2>5. Current status and transparency</h2><p>The ERC-20 token deployment and its fixed-supply properties are distinct from the proposed ecosystem products. The Verified Badge, staking mechanics, automated fee burns, media detection product, dApp/API and DAO are not represented here as live features unless separately released and verifiable. Do not assume a feature is operational solely because it appears in a roadmap.</p>
+<h2>6. Roadmap</h2><ol><li><b>Foundation:</b> documentation, project information and Badge eligibility framework.</li><li><b>Ecosystem expansion:</b> explore DEX access, an initial Badge pilot and applications to market-information platforms.</li><li><b>Research &amp; development:</b> QUANTIFICIAL alpha, media-authenticity evaluation and research into staking mechanics.</li><li><b>Public access:</b> explore dApp/API access, consumer utilities and a community governance model.</li></ol><p>Roadmap items are goals, not guarantees. Timing and scope may change based on technical, legal, operational and community considerations.</p>
+<h2>7. Risk and disclaimer</h2><p>This document is informational and does not constitute financial, investment, legal or tax advice, an offer to sell securities, or a solicitation to buy digital assets. Digital assets are volatile and may result in loss. Verification is not a guarantee. Technical systems can fail or produce inaccurate results. Readers should independently verify contract addresses, source code, announcements and applicable legal requirements.</p>
+<h2>8. Founders and contact</h2><p>Founder names, roles, biographies and official contact channels will be published after they are approved for public release.</p><p><a class="text-link" href="index.html">← Return to VERIQ homepage</a></p></main><footer><span>© 2026 VERIQ</span><a href="index.html">Home</a></footer></body></html>''',
+"README.md": r'''# VERIQ Official Website
 
-    <!-- Global Glow Accents -->
-    <div class="absolute top-[20%] left-[-10%] w-[400px] h-[400px] bg-sky-500/5 rounded-full blur-[120px] pointer-events-none"></div>
-    <div class="absolute top-[60%] right-[-10%] w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[150px] pointer-events-none"></div>
+A responsive static website prepared for deployment with **GitHub Pages**.
 
-    <!-- Navigation Header Layer -->
-    <header class="sticky top-0 z-50 backdrop-blur-md border-b border-slate-900 bg-gray-950/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-400 to-indigo-500 flex items-center justify-center text-gray-950 font-black shadow-lg tracking-tighter text-lg heading-font">
-                    V
-                </div>
-                <div>
-                    <span class="text-white font-bold tracking-wider text-xl heading-font">VERIQ</span>
-                    <span class="text-sky-400 text-xs block tracking-widest font-mono">NETWORK</span>
-                </div>
-            </div>
-            
-            <!-- Navbar Quick Access Anchor Links -->
-            <nav class="hidden md:flex items-center gap-8 bg-slate-900/60 border border-slate-800/50 px-6 py-2 rounded-full">
-                <a href="#overview" class="text-sm font-medium text-white hover:text-sky-400 transition-colors">Overview</a>
-                <a href="#utility" class="text-sm font-medium text-slate-400 hover:text-sky-400 transition-colors">Utility</a>
-                <a href="#roadmap" class="text-sm font-medium text-slate-400 hover:text-sky-400 transition-colors">Roadmap</a>
-            </nav>
+## Included
+- `index.html` — official project landing page
+- `whitepaper.html` — readable public project overview
+- `styles.css` — responsive styling
+- `script.js` — mobile navigation
+- `assets/veriq-mark.svg` — simple VERIQ mark
+- `docs/` — place the final approved whitepaper PDF here
 
-            <div>
-                <button id="connectWalletNav" class="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-sky-400 to-indigo-500 hover:from-sky-300 hover:to-indigo-400 text-gray-950 font-bold text-sm rounded-xl transition-all duration-300 transform active:scale-95 shadow-md shadow-sky-500/10 cursor-pointer">
-                    <i class="fa-solid fa-wallet text-sm"></i> <span>Connect Wallet</span>
-                </button>
-            </div>
-        </div>
-    </header>
+## Publish with GitHub Pages
+1. Create a GitHub repository named `veriq-website` (or use your existing public website repository).
+2. Upload **all files and folders inside this package** to the repository root. Do not upload only the ZIP.
+3. Open **Settings → Pages**.
+4. Under **Build and deployment**, choose **Deploy from a branch**.
+5. Select branch `main` and folder `/ (root)`, then Save.
+6. Wait for GitHub Pages to publish. The public URL will appear in Settings → Pages.
 
-    <!-- Hero Matrix Architecture -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 text-center relative">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/80 border border-slate-800 text-xs font-medium text-sky-400 mb-6 uppercase tracking-widest">
-            <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span> Quantum-AI Safeguards Activated
-        </div>
-        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 heading-font max-w-4xl mx-auto leading-none">
-            Secure Trust Systems Built for the <span class="bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">Agentic Era</span>
-        </h1>
-        <p class="text-base sm:text-xl text-slate-400 max-w-2xl mx-auto font-normal leading-relaxed mb-8">
-            Decentralized Trust Badges & Quantum-AI Deepfake Safeguards. Protecting identity and value with un-hackable mathematical ledgers.
-        </p>
-    </section>
+## Before publishing
+- Replace the GitHub link in `index.html` with your actual official repository URL.
+- Add the final approved PDF at `docs/VERIQ-Whitepaper.pdf` (the homepage button expects this path).
+- Add the verified Ethereum contract address and link.
+- Add approved founder names, titles, biographies and photos.
+- Add official community and contact links.
+- Review all legal, token and product statements before public release.
 
-    <!-- Core Content Container Grid Layout -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 pb-20">
+## Accuracy notes
+The site distinguishes the deployed token facts from proposed or planned utilities. The fixed supply is shown as 190,000,000 VRQ with 18 decimals on Ethereum (ERC-20). The website does **not** claim that staking, automated burns, the Verified Badge, media-detection product, dApp/API or DAO are already live.
+''',
+"assets/veriq-mark.svg": r'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#79c5ff"/><stop offset="1" stop-color="#287ee8"/></linearGradient></defs><path d="M8 10h13l11 30 11-30h13L37 55H27z" fill="none" stroke="url(#g)" stroke-width="6" stroke-linejoin="round"/><path d="M45 45l8 8" stroke="#79c5ff" stroke-width="5" stroke-linecap="round"/></svg>''',
+"docs/README.md": "Place the final approved VERIQ whitepaper PDF here using the filename `VERIQ-Whitepaper.pdf`.\n"
+}
+for name, content in files.items():
+    p = root / name
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(content, encoding="utf-8")
 
-        <!-- SECTION 1: OVERVIEW METRICS & GATEWAY HUB -->
-        <section id="overview" class="scroll-mt-28">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                
-                <!-- Token Metrics Breakdown -->
-                <div class="glass-card p-8 rounded-2xl lg:col-span-2 relative overflow-hidden transition-all duration-300">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-sky-500/5 rounded-full blur-3xl pointer-events-none"></div>
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-8 h-8 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-400 border border-sky-500/20"><i class="fa-solid fa-chart-simple"></i></div>
-                        <h3 class="text-lg font-bold text-white tracking-wide heading-font">Ecosystem Core Information</h3>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="p-4 bg-slate-900/40 border border-slate-800/40 rounded-xl">
-                            <span class="text-xs text-slate-500 block mb-1 uppercase tracking-wider font-semibold">Token Name</span>
-                            <span class="text-lg font-bold text-white heading-font">Veriq</span>
-                        </div>
-                        <div class="p-4 bg-slate-900/40 border border-slate-800/40 rounded-xl">
-                            <span class="text-xs text-slate-500 block mb-1 uppercase tracking-wider font-semibold">Symbol</span>
-                            <span class="text-lg font-bold text-sky-400 font-mono tracking-widest bg-sky-500/5 px-2.5 py-0.5 rounded border border-sky-500/10 inline-block">$VRQ</span>
-                        </div>
-                        <div class="p-4 bg-slate-900/40 border border-slate-800/40 rounded-xl">
-                            <span class="text-xs text-slate-500 block mb-1 uppercase tracking-wider font-semibold">Total Hard Cap Supply</span>
-                            <span class="text-lg font-bold text-indigo-300 font-mono tracking-wide">190,000,000 $VERIQ</span>
-                        </div>
-                        <div class="p-4 bg-slate-900/40 border border-slate-800/40 rounded-xl">
-                            <span class="text-xs text-slate-500 block mb-1 uppercase tracking-wider font-semibold">Contract Protocol</span>
-                            <span class="text-sm font-semibold text-slate-300 block mt-1">Fixed Supply Deflationary Architecture</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Web3 Interactive Staking/Wallet Interface -->
-                <div class="glass-card p-8 rounded-2xl flex flex-col justify-between transition-all duration-300 bg-gradient-to-b from-slate-900/40 to-indigo-950/20 border-indigo-500/10">
-                    <div>
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400 border border-indigo-500/20"><i class="fa-solid fa-shield"></i></div>
-                            <h3 class="text-lg font-bold text-white tracking-wide heading-font">Wallet Hub Gateway</h3>
-                        </div>
-                        <p class="text-sm text-slate-400 leading-relaxed mb-6">
-                            Connect your non-custodial decentralized web3 wallet dashboard infrastructure to execute secure operations.
-                        </p>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <button id="connectWalletBody" class="w-full flex items-center justify-center gap-2.5 py-3.5 px-4 bg-slate-900 hover:bg-slate-850 text-white border border-slate-700 font-bold text-sm tracking-wide rounded-xl transition-all duration-300 cursor-pointer hover:border-sky-400 shadow-md">
-                            <i class="fa-solid fa-bolt text-sky-400"></i> Connect Web3 Wallet
-                        </button>
-                        <div id="walletAddressDisplay" class="p-4 bg-slate-950 rounded-xl border border-slate-800 font-mono text-xs text-emerald-400 hidden break-all text-center neon-glow"></div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- SECTION 2: UTILITY ARSENAL GRID DISPLAY -->
-        <section id="utility" class="scroll-mt-28">
-            <div class="mb-10 text-center md:text-left">
-                <h2 class="text-2xl sm:text-3xl font-bold text-white heading-font tracking-tight mb-2">Ecosystem Utility</h2>
-                <p class="text-sm text-slate-500 max-w-xl">Deep integration details powering validation mechanics and network incentives.</p>
-            </div>
-
+zip_path = Path("/mnt/data/VERIQ_GitHub_Website.zip")
+with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
+    for p in root.rglob("*"):
+        if p.is_file():
+            z.write(p, p.relative_to(root.parent))
+print(f"Created: {zip_path} ({zip_path.stat().st_size:,} bytes)")
+print(f"Files: {sum(1 for p in root.rglob('*') if p.is_file())}")
