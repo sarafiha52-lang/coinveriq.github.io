@@ -1,152 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veriq Network — Quantum-AI Deepfake Safeguards & Trust Badge Ecosystem</title>
+    <title>VERIQ Network — The Deepfake Safeguard & Trust Verification Layer</title>
     <!-- Tailwind CSS Engine -->
     <script src="https://jsdelivr.net"></script>
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Inter (Premium Editorial Technical Typo) -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome Core Icons -->
     <link rel="stylesheet" href="https://cloudflare.com">
     
     <style>
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #030712;
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
         }
-        .heading-font {
-            font-family: 'Space Grotesk', sans-serif;
+        /* Tenup Editorial Layout Helpers */
+        .monospace-tag {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         }
-        .crypto-gradient-bg {
-            background: radial-gradient(circle at 50% -20%, rgba(56, 189, 248, 0.15) 0%, rgba(99, 102, 241, 0.05) 40%, rgba(3, 7, 18, 0) 70%);
-        }
-        .glass-card {
-            background: rgba(15, 23, 42, 0.45);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .glass-card:hover {
-            border-color: rgba(56, 189, 248, 0.25);
-            box-shadow: 0 20px 40px -15px rgba(56, 189, 248, 0.15);
-        }
-        .roadmap-line::before {
-            content: '';
-            position: absolute;
-            left: 20px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #38bdf8, #6366f1, #0f172a);
-        }
-        @media (min-width: 640px) {
-            .roadmap-line::before {
-                left: 50%;
-                transform: translateX(-50%);
-            }
+        .section-divider {
+            border-top: 1px solid #18181b;
         }
     </style>
 </head>
-<body class="text-slate-300 min-h-screen crypto-gradient-bg antialiased selection:bg-sky-500 selection:text-slate-950">
+<body class="text-zinc-300 antialiased selection:bg-zinc-800 selection:text-white">
 
-    <!-- Global Glow Accents -->
-    <div class="absolute top-[15%] left-[-5%] w-[500px] h-[500px] bg-sky-500/5 rounded-full blur-[140px] pointer-events-none"></div>
-    <div class="absolute top-[50%] right-[-5%] w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-[160px] pointer-events-none"></div>
-
-    <!-- Navigation Header Layer -->
-    <header class="sticky top-0 z-50 backdrop-blur-md border-b border-slate-900 bg-gray-950/60">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <!-- Header Navigation Grid Layer -->
+    <header class="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-zinc-950">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
+            
+            
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-400 to-indigo-500 flex items-center justify-center text-gray-950 font-black shadow-lg tracking-tighter text-lg heading-font">
-                    V
-                </div>
-                <div>
-                    <span class="text-white font-bold tracking-wider text-xl heading-font">VERIQ</span>
-                    <span class="text-sky-400 text-xs block tracking-widest font-mono">NETWORK</span>
-                </div>
+                <span class="text-white font-bold tracking-tight text-xl uppercase">Veriq Network</span>
+                <span class="text-[10px] monospace-tag bg-zinc-900 border border-zinc-800 text-zinc-400 px-2 py-0.5 rounded font-medium">v2.0</span>
             </div>
             
-            <!-- Navbar Center Links -->
-            <nav class="hidden md:flex items-center gap-8 bg-slate-900/40 border border-slate-800/40 px-6 py-2 rounded-full">
-                <a href="#overview" class="text-sm font-medium text-white hover:text-sky-400 transition-colors">Overview</a>
-                <a href="#utility" class="text-sm font-medium text-slate-400 hover:text-sky-400 transition-colors">Utility</a>
-                <a href="#roadmap" class="text-sm font-medium text-slate-400 hover:text-sky-400 transition-colors">Roadmap</a>
+            <!-- Exact Options Requested by User -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#about" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">About Us</a>
+                <a href="#utility" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">Coin Utility</a>
+                <a href="#whitepaper" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">White Paper</a>
+                <a href="#roadmap" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">Roadmap</a>
             </nav>
 
-            <div>
-                <button id="connectWalletNav" class="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-sky-400 to-indigo-500 hover:from-sky-300 hover:to-indigo-400 text-gray-950 font-bold text-sm rounded-xl transition-all duration-300 transform active:scale-95 shadow-lg shadow-sky-500/10 cursor-pointer">
-                    <i class="fa-solid fa-wallet text-sm"></i> <span>Connect Wallet</span>
+            <div class="flex items-center gap-4">
+                <button id="connectWalletBtn" class="monospace-tag px-5 py-2 bg-zinc-900 hover:bg-zinc-800 text-white font-medium text-xs border border-zinc-800 rounded transition-all duration-200 cursor-pointer">
+                    Connect Wallet
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center relative">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/80 border border-slate-800 text-xs font-medium text-sky-400 mb-6 uppercase tracking-widest">
-            <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span> Quantum-AI Framework Active
+    <!-- Super Clean Massive Minimalist Hero Banner Layout -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 pt-28 pb-32">
+        <div class="text-xs monospace-tag text-zinc-500 uppercase tracking-wider mb-6">
+            Verification Layer // Deflationary Token Architecture
         </div>
-        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 heading-font max-w-5xl mx-auto leading-none">
-            Secure Trust Systems Built for the <span class="bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">Agentic Era</span>
+        
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white max-w-5xl leading-[1.05] mb-10">
+            Trust should never be optional. Secure systems built for digital evidence.
         </h1>
-        <p class="text-base sm:text-xl text-slate-400 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
-            Decentralized Trust Badges & Quantum-AI Deepfake Safeguards. Protecting enterprise storefronts and digital assets via cryptographic validation ledgers.
+        
+        <p class="text-base sm:text-xl text-zinc-400 max-w-3xl leading-relaxed mb-12">
+            Veriq Network lets any e-commerce storefront, document verification ledger, or computational model output be cryptographically secured on-chain—eliminating identity manipulation and deepfakes at source.
         </p>
-        <div class="flex flex-wrap justify-center gap-4">
-            <a href="#overview" class="px-6 py-3.5 bg-slate-900 hover:bg-slate-850 text-white font-semibold text-sm rounded-xl border border-slate-800 hover:border-sky-400/50 transition-all duration-300 shadow-md">Explore Architecture</a>
-            <a href="#utility" class="px-6 py-3.5 bg-sky-400/10 hover:bg-sky-400/20 text-sky-400 font-semibold text-sm rounded-xl border border-sky-400/20 transition-all duration-300">View Ecosystem Utilities</a>
+
+        <div class="flex flex-wrap gap-4">
+            <a href="#about" class="px-6 py-3 bg-white hover:bg-zinc-200 text-black font-semibold text-sm rounded transition-all">
+                How it works
+            </a>
+            <a href="#whitepaper" class="px-6 py-3 bg-zinc-900 hover:bg-zinc-800 text-white font-semibold text-sm border border-zinc-800 rounded transition-all">
+                Read Whitepaper
+            </a>
+        </div>
+
+        <!-- Metric Scoreboard Row (Tenup Editorial Grid Layout) -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 pt-20 mt-12 border-t border-zinc-900">
+            <div>
+                <div class="text-2xl sm:text-3xl font-bold text-white tracking-tight">190,000,000</div>
+                <div class="text-xs monospace-tag text-zinc-500 mt-1 uppercase">Hard Cap Supply</div>
+            </div>
+            <div>
+                <div class="text-2xl sm:text-3xl font-bold text-white tracking-tight">$VRQ</div>
+                <div class="text-xs monospace-tag text-zinc-500 mt-1 uppercase">Ecosystem Ticker</div>
+            </div>
+            <div>
+                <div class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Deflationary</div>
+                <div class="text-xs monospace-tag text-zinc-500 mt-1 uppercase">Contract Architecture</div>
+            </div>
+            <div>
+                <div class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Fixed</div>
+                <div class="text-xs monospace-tag text-zinc-500 mt-1 uppercase">Supply Protocol</div>
+            </div>
         </div>
     </section>
 
-    <!-- Main Infrastructure Base -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32 pb-24 relative z-10">
+    <!-- Content Blocks: One by One Sequential Layout -->
+    <main class="max-w-7xl mx-auto px-6 sm:px-8 space-y-36 pb-32">
 
-        <!-- OVERVIEW & METRICS HUB -->
-        <section id="overview" class="scroll-mt-28">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                
-                <!-- Token Metrics Grid -->
-                <div class="glass-card p-8 rounded-3xl lg:col-span-2 relative overflow-hidden transition-all duration-300">
-                    <div class="flex items-center gap-3 mb-8">
-                        <div class="w-9 h-9 rounded-xl bg-sky-500/10 flex items-center justify-center text-sky-400 border border-sky-500/20"><i class="fa-solid fa-chart-network"></i></div>
-                        <h3 class="text-xl font-bold text-white tracking-wide heading-font">Ecosystem Core Information</h3>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="p-5 bg-slate-950/40 border border-slate-900/60 rounded-2xl">
-                            <span class="text-xs text-slate-500 block mb-1.5 uppercase tracking-wider font-semibold">Token Name</span>
-                            <span class="text-xl font-bold text-white heading-font tracking-wide">Veriq</span>
-                        </div>
-                        <div class="p-5 bg-slate-950/40 border border-slate-900/60 rounded-2xl">
-                            <span class="text-xs text-slate-500 block mb-1.5 uppercase tracking-wider font-semibold">Symbol</span>
-                            <span class="text-lg font-bold text-sky-400 font-mono tracking-widest bg-sky-500/10 px-3 py-0.5 rounded-lg border border-sky-500/20 inline-block">$VRQ</span>
-                        </div>
-                        <div class="p-5 bg-slate-950/40 border border-slate-900/60 rounded-2xl">
-                            <span class="text-xs text-slate-500 block mb-1.5 uppercase tracking-wider font-semibold">Total Hard Cap Supply</span>
-                            <span class="text-xl font-bold text-indigo-300 font-mono tracking-wide">190,000,000 $VERIQ</span>
-                        </div>
-                        <div class="p-5 bg-slate-950/40 border border-slate-900/60 rounded-2xl">
-                            <span class="text-xs text-slate-500 block mb-1.5 uppercase tracking-wider font-semibold">Contract Protocol</span>
-                            <span class="text-base font-bold text-slate-200 block mt-0.5 heading-font">Fixed Supply Deflationary Architecture</span>
-                        </div>
-                    </div>
+        <!-- 1. ABOUT US SECTION (Perfect Mirror of Tenup "The Problem" Grid Pattern) -->
+        <section id="about" class="scroll-mt-24 section-divider pt-16">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div>
+                    <div class="text-xs monospace-tag text-zinc-500 uppercase tracking-wider mb-3">About Us</div>
+                    <h2 class="text-3xl font-bold text-white tracking-tight leading-none mb-6">Digital verification stopped meaning anything.</h2>
+                    <p class="text-sm text-zinc-400 leading-relaxed">
+                        Every storefront, document asset, or digital visual output now arrives with a vulnerability gap. Generating spoofed elements is too cheap to scale. Veriq establishes absolute immutable verification safeguards.
+                    </p>
                 </div>
-
-                <!-- Web3 Interactive App Accessor -->
-                <div class="glass-card p-8 rounded-3xl flex flex-col justify-between transition-all duration-300 bg-gradient-to-b from-slate-900/20 to-indigo-950/10 border-indigo-500/5">
-                    <div>
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-9 h-9 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 border border-indigo-500/20"><i class="fa-solid fa-server"></i></div>
-                            <h3 class="text-xl font-bold text-white tracking-wide heading-font">Wallet Hub Gateway</h3>
-                        </div>
-                        <p class="text-sm text-slate-400 leading-relaxed mb-6">
-                            Connect your non-custodial decentralized web3 wallet dashboard infrastructure to execute secure operations.
+                
+                <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10">
+                    <!-- Point 01 -->
+                    <div class="border-t border-zinc-900 pt-4">
+                        <div class="text-xs monospace-tag text-zinc-500 mb-2">01 // Ecosystem Core</div>
+                        <h4 class="text-base font-semibold text-white mb-2">Immutable Protocol Architecture</h4>
+                        <p class="text-xs text-zinc-400 leading-relaxed">
+                            Our primary framework layers security directly over public environments, ensuring mathematical ledgers preserve validity natively.
                         </p>
                     </div>
-                    
-                    <div class="space-y-4">
-                        <button id="connectWalletBody" class="w-full flex items-center justify-center gap-2.5 py-4 px-4 bg-slate-900 hover:bg-slate-850 text-white border border-slate-800 font-bold text-sm tracking-wide rounded-xl transition-all duration-300 cursor-pointer hover:border-sky-400 shadow-md">
-                            <i class="fa-solid fa-bolt text-sky-400"></i> Connect Web3 Wallet
+                    <!-- Point 02 -->
+                    <div class="border-t border-zinc-900 pt-4">
+                        <div class="text-xs monospace-tag text-zinc-500 mb-2">02 // Threat Mitigation</div>
+                        <h4 class="text-base font-semibold text-white mb-2">Zero-Trust Network Operations</h4>
+                        <p class="text-xs text-zinc-400 leading-relaxed">
+                            Bypassing reputational dependencies through cryptographically safe on-chain evidence matching logs.
+                        </p>
+                    </div>
+                    <!-- Point 03 -->
+                    <div class="border-t border-zinc-900 pt-4">
+                        <div class="text-xs monospace-tag text-zinc-500 mb-2">03 // Privacy Layers</div>
+                        <h4 class="text-base font-semibold text-white mb-2">Cryptographic Validation Nodes</h4>
+                        <p class="text-xs text-zinc-400 leading-relaxed">
+                            Processing validation layers seamlessly while ensuring sensitive commercial user details are completely masked via non-reversible hashes.
+                        </p>
+                    </div>
+                    <!-- Point 04 -->
+                    <div class="border-t border-zinc-900 pt-4">
+                        <div class="text-xs monospace-tag text-zinc-500 mb-2">04 // Verification Hub</div>
+                        <h4 class="text-base font-semibold text-white mb-2">Active Validation Engine</h4>
+                        <p class="text-xs text-zinc-400 leading-relaxed">
+                            Recomputing network ledger timestamps continuously to maintain permanent audit transparency layers globally.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. COIN UTILITY SECTION (Perfect Mirror of Tenup "One Primitive, Twelve Industries" Column Grid) -->
+        <section id="utility" class="scroll-mt-24 section-divider pt-16">
+            <div class="max-w-3xl mb-16">
+                <div class="text-xs monospace-tag text-zinc-500 uppercase tracking-wider mb-3">Network Drivers</div>
+                <h2 class="text-3xl font-bold text-white tracking-tight mb-4">Coin Utility Stack</h2>
+                <p class="text-sm text-zinc-400 leading-relaxed">Anywhere a claim needs to be provably validated, the same deflationary staking cycle applies. The Veriq engineering parameters drive long-term structural ecosystem incentives.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Utility Card 1 -->
+                <div class="p-6 bg-zinc-950 border border-zinc-900 rounded-lg flex flex-col justify-between">
+                    <div>
