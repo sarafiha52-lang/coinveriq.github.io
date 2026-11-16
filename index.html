@@ -4,384 +4,580 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VERIQ Ecosystem - Official Project & Token Portal</title>
-    <link rel="icon" type="image/svg+xml" href="logo.svg" sizes="32x32">
+
+    <title>VERIQ | Digital Business & Media Verification Ecosystem</title>
+
+    <meta name="description" content="VERIQ (VRQ) is an Ethereum-based project focused on digital business verification, AI media authenticity analysis and cryptographic verification services.">
+
+    <meta name="theme-color" content="#060913">
+
+    <link rel="icon" type="image/svg+xml" href="veriq.svg">
+    <link rel="canonical" href="https://sarafiha52-lang.github.io/coinveriq.github.io/">
 
     <style>
-        html {
-            scroll-behavior: smooth;
+        :root {
+            --background: #060913;
+            --surface: #0b1324;
+            --card: #0f1b30;
+            --blue: #38bdf8;
+            --cyan: #22d3ee;
+            --text: #ffffff;
+            --muted: #9ca3af;
+            --border: #1e293b;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 85px;
         }
 
         body {
-            background-color: #060913;
-            color: #ffffff;
-            line-height: 1.6;
+            background: var(--background);
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.7;
         }
 
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            width: 84%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* HEADER */
+
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            background-color: #0b0f19;
-            border-bottom: 1px solid #1f2937;
             position: sticky;
             top: 0;
             z-index: 1000;
+            background: rgba(6, 9, 19, 0.96);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
         }
 
-        .logo {
-            font-size: 26px;
+        .navbar {
+            min-height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            font-size: 25px;
             font-weight: 800;
-            color: #38bdf8;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
+        }
+
+        .brand img {
+            width: 38px;
+            height: 38px;
         }
 
         .nav-links {
-            list-style: none;
             display: flex;
-        }
-
-        .nav-links li {
-            margin-left: 25px;
+            align-items: center;
+            gap: 27px;
+            list-style: none;
         }
 
         .nav-links a {
-            color: #9ca3af;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            transition: color 0.3s;
+            color: var(--muted);
+            font-size: 14px;
+            transition: .3s;
         }
 
         .nav-links a:hover {
-            color: #38bdf8;
+            color: var(--blue);
         }
 
-        section {
-            padding: 100px 8%;
-            display: block;
-            clear: both;
+        .nav-button {
+            padding: 9px 17px;
+            border: 1px solid var(--blue);
+            border-radius: 6px;
+            color: var(--blue) !important;
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 10px;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .section-title span {
-            color: #38bdf8;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: #9ca3af;
-            margin-bottom: 40px;
-            font-size: 16px;
-        }
+        /* HERO */
 
         .hero {
+            padding: 120px 20px;
             text-align: center;
-            padding: 140px 8% 120px;
-            background: #0b132b;
+            background:
+                radial-gradient(ellipse at top, #102c50 0%, #0b1324 45%, #060913 85%);
+        }
+
+        .hero-label {
+            display: inline-block;
+            padding: 7px 17px;
+            border: 1px solid #164e63;
+            border-radius: 30px;
+            color: var(--cyan);
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
         }
 
         .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
+            max-width: 900px;
+            margin: auto;
+            font-size: clamp(36px, 5vw, 62px);
+            line-height: 1.15;
             font-weight: 800;
-            color: #ffffff;
         }
 
-        .hero h1 span {
-            color: #38bdf8;
+        .gradient-text {
+            background: linear-gradient(90deg, #38bdf8, #22d3ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .hero p {
-            font-size: 19px;
-            color: #9ca3af;
-            max-width: 750px;
-            margin: 0 auto 35px;
+            max-width: 760px;
+            margin: 25px auto 35px;
+            color: var(--muted);
+            font-size: 17px;
         }
 
-        .btn-container {
+        .button-group {
             display: flex;
-            gap: 15px;
             justify-content: center;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
         .btn {
-            background-color: #38bdf8;
-            color: #060913;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            text-decoration: none;
             display: inline-block;
-        }
-
-        .btn:hover {
-            background-color: #0ea5e9;
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: #38bdf8;
-            border: 2px solid #38bdf8;
-        }
-
-        .btn-secondary:hover {
-            background-color: rgba(56, 189, 248, 0.1);
-            color: #ffffff;
-        }
-
-        .contract-box {
-            background: #0f172a;
-            border: 1px solid #1e293b;
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 750px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contract-label {
-            font-size: 13px;
-            color: #38bdf8;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-            font-weight: bold;
-        }
-
-        .contract-string {
-            font-family: monospace;
-            color: #38bdf8;
-            font-size: 16px;
-            word-break: break-all;
-            background: #060913;
-            padding: 14px;
+            padding: 13px 25px;
             border-radius: 6px;
-            border: 1px solid #1f2937;
-            display: block;
-            margin-bottom: 20px;
-            font-weight: bold;
+            font-size: 14px;
+            font-weight: 700;
+            transition: .3s;
         }
 
-        .spec-table {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-            text-align: left;
+        .btn-primary {
+            background: var(--blue);
+            color: #06101d;
         }
 
-        .spec-table th,
-        .spec-table td {
-            padding: 12px;
-            border-bottom: 1px solid #1f2937;
+        .btn-primary:hover {
+            background: var(--cyan);
+            transform: translateY(-2px);
         }
 
-        .spec-table th {
-            color: #9ca3af;
+        .btn-outline {
+            color: var(--blue);
+            border: 1px solid var(--blue);
         }
 
-        .spec-table td {
-            color: #ffffff;
-            font-weight: 600;
+        .btn-outline:hover {
+            background: rgba(56, 189, 248, .1);
         }
 
-        .utility-grid {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
+        /* GENERAL SECTIONS */
+
+        section {
+            padding: 90px 0;
         }
 
-        .utility-card {
-            background-color: #0f172a;
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #1e293b;
-            flex: 1;
-            min-width: 250px;
-            max-width: 350px;
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
         }
 
-        .utility-card h3 {
-            color: #38bdf8;
-            font-size: 22px;
-            margin-bottom: 15px;
+        .section-heading h2 {
+            font-size: clamp(28px, 4vw, 38px);
+            margin-bottom: 12px;
         }
 
-        .utility-card p {
-            color: #9ca3af;
+        .section-heading p {
+            color: var(--muted);
+            max-width: 720px;
+            margin: auto;
             font-size: 15px;
         }
 
-        .utility-roadmap {
-            margin-top: 80px;
+        /* CONTRACT */
+
+        .contract-section {
+            background: #080e1b;
         }
 
-        .phase-status {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 5px 12px;
-            border: 1px solid #334155;
-            border-radius: 20px;
-            color: #38bdf8;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .roadmap-timeline {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .roadmap-content {
-            padding: 20px;
-            background-color: #0f172a;
-            border-radius: 8px;
-            border: 1px solid #1e293b;
-            margin-bottom: 20px;
-        }
-
-        .roadmap-content h3 {
-            color: #38bdf8;
-            margin-bottom: 8px;
-            font-size: 18px;
-        }
-
-        .roadmap-content p {
-            color: #9ca3af;
-            font-size: 14px;
-        }
-
-        .team-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .team-card {
-            background-color: #0f172a;
-            border: 1px solid #1e293b;
-            padding: 30px;
+        .contract-box {
+            max-width: 850px;
+            margin: auto;
+            padding: 35px;
+            border: 1px solid var(--border);
             border-radius: 12px;
+            background: var(--surface);
+        }
+
+        .contract-label {
+            color: var(--blue);
             text-align: center;
-            width: 100%;
-            max-width: 350px;
-        }
-
-        .team-card h3 {
-            color: #ffffff;
-            font-size: 20px;
-            margin-bottom: 5px;
-        }
-
-        .team-card .role {
-            color: #38bdf8;
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: bold;
             margin-bottom: 15px;
         }
 
-        .team-card p {
-            color: #9ca3af;
+        .contract-address {
+            display: block;
+            padding: 16px;
+            text-align: center;
+            background: #060913;
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            color: var(--cyan);
+            font-family: monospace;
             font-size: 14px;
+            overflow-wrap: anywhere;
+            margin-bottom: 25px;
+        }
+
+        .contract-actions {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .info-table td {
+            padding: 13px 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .info-table td:first-child {
+            color: var(--muted);
+        }
+
+        .info-table td:last-child {
+            color: white;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* UTILITY */
+
+        .utility-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .utility-card {
+            padding: 30px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: .3s;
+        }
+
+        .utility-card:hover {
+            border-color: var(--blue);
+            transform: translateY(-4px);
+        }
+
+        .card-number {
+            color: var(--blue);
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .utility-card h3 {
+            margin: 15px 0;
+            font-size: 21px;
+        }
+
+        .utility-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .status {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 5px 12px;
+            border: 1px solid #475569;
+            border-radius: 20px;
+            color: var(--cyan);
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* TECHNOLOGY */
+
+        .technology-section {
+            background: #080e1b;
+        }
+
+        .technology-box {
+            max-width: 900px;
+            margin: auto;
+            padding: 35px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .technology-box h3 {
+            color: var(--blue);
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .technology-box p {
+            color: var(--muted);
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        /* ROADMAP */
+
+        .roadmap {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .roadmap-item {
+            padding: 25px 30px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--blue);
+            border-radius: 8px;
+            margin-bottom: 18px;
+        }
+
+        .roadmap-item h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .roadmap-item p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* FOUNDERS */
+
+        .founders-section {
+            background: #080e1b;
+        }
+
+        .founder-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 350px));
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .founder-card {
+            text-align: center;
+            padding: 35px 25px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .founder-photo {
+            width: 135px;
+            height: 135px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--blue);
             margin-bottom: 20px;
         }
 
-        .team-photo {
-            width: 125px;
-            height: 125px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #38bdf8;
-            margin: 0 auto 20px;
-            display: block;
+        .founder-card h3 {
+            font-size: 21px;
         }
 
-        .team-socials {
+        .founder-role {
+            color: var(--blue);
+            font-size: 13px;
+            font-weight: bold;
+            margin: 7px 0 15px;
+        }
+
+        .founder-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .founder-links {
             display: flex;
             justify-content: center;
             gap: 12px;
             flex-wrap: wrap;
-            margin-top: 20px;
+            margin-top: 22px;
         }
 
-        .social-icon {
-            color: #ffffff;
-            background: #1f2937;
-            padding: 10px 20px;
+        .founder-links a {
+            color: var(--blue);
+            border: 1px solid var(--border);
             border-radius: 20px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s;
+            padding: 7px 16px;
+            font-size: 12px;
+            transition: .3s;
         }
 
-        .social-icon:hover {
-            background: #38bdf8;
-            color: #060913;
+        .founder-links a:hover {
+            background: var(--blue);
+            color: #06101d;
         }
+
+        /* TRANSPARENCY */
+
+        .transparency-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .transparency-item {
+            padding: 22px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .transparency-item h3 {
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .transparency-item a {
+            color: var(--blue);
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        /* FOOTER */
 
         footer {
-            background-color: #0b0f19;
-            padding: 40px 8%;
-            border-top: 1px solid #1f2937;
+            background: #050811;
+            border-top: 1px solid var(--border);
+            padding: 45px 0 25px;
+        }
+
+        .footer-content {
             text-align: center;
         }
 
-        footer p {
-            color: #6b7280;
+        .footer-brand {
+            color: var(--blue);
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 22px;
+            flex-wrap: wrap;
+            margin: 22px 0;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .footer-links a:hover {
+            color: var(--blue);
+        }
+
+        .footer-email {
+            color: var(--blue);
             font-size: 14px;
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 32px;
+        .copyright {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+            .nav-links {
+                gap: 13px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .utility-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+
+            .navbar {
+                padding: 15px 0;
+                flex-direction: column;
+                gap: 15px;
             }
 
             .nav-links {
-                display: none;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .hero {
+                padding: 85px 15px;
+            }
+
+            section {
+                padding: 65px 0;
             }
 
             .utility-grid,
-            .team-grid {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .section-title {
-                font-size: 28px;
+            .founder-grid,
+            .transparency-grid {
+                grid-template-columns: 1fr;
             }
 
             .contract-box {
-                padding: 20px;
+                padding: 20px 14px;
             }
 
-            .spec-table th,
-            .spec-table td {
-                padding: 8px;
-                font-size: 13px;
+            .info-table td {
+                font-size: 12px;
+            }
+
+            .roadmap-item {
+                padding: 20px;
             }
         }
     </style>
@@ -389,419 +585,690 @@
 
 <body>
 
-    <header>
-        <div class="logo">VERIQ</div>
+<!-- HEADER -->
 
-        <ul class="nav-links">
-            <li><a href="#contract">On-Chain Data</a></li>
-            <li><a href="#utility">Token Utility</a></li>
-            <li><a href="#roadmap">Roadmap</a></li>
-            <li><a href="#founders">Founders</a></li>
-        </ul>
-    </header>
+<header>
+    <div class="container navbar">
 
-    <!-- HERO SECTION -->
-    <div class="hero">
-        <h1>Quantum & AI Powered <span>Media Verification</span></h1>
+        <a href="#home" class="brand">
+            <img src="veriq.svg" alt="VERIQ Logo">
+            VERIQ
+        </a>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#contract">Contract</a></li>
+                <li><a href="#utility">Utility</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#founders">Founders</a></li>
+                <li><a href="#transparency" class="nav-button">Project Info</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+
+<!-- HERO SECTION -->
+
+<main>
+
+<section class="hero" id="home">
+
+    <div class="container">
+
+        <div class="hero-label">
+            ETHEREUM-BASED DIGITAL VERIFICATION ECOSYSTEM
+        </div>
+
+        <h1>
+            Building Trust in the
+            <span class="gradient-text">
+                Digital World
+            </span>
+        </h1>
 
         <p>
-            Veriq (VRQ) is building a proposed ecosystem focused on
-            digital business verification, AI media authenticity
-            analysis and future cryptographic verification services.
+            VERIQ (VRQ) is a blockchain-based project
+            focused on digital business verification,
+            AI-powered media authenticity analysis and
+            future cryptographic verification services.
+            The project aims to support transparency,
+            digital credibility and consumer protection.
         </p>
 
-        <div class="btn-container">
-            <a href="#utility" class="btn">Explore Token Utility</a>
+        <div class="button-group">
 
-            <a href="VERIQ Whitepaper (5).pdf"
+            <a href="#utility" class="btn btn-primary">
+                Explore Ecosystem
+            </a>
+
+            <a href="VERIQ%20Whitepaper%20(5).pdf"
                target="_blank"
                rel="noopener noreferrer"
-               class="btn btn-secondary">Read Whitepaper</a>
+               class="btn btn-outline">
+                Read Whitepaper
+            </a>
+
         </div>
+
     </div>
 
-    <!-- ON-CHAIN DATA SECTION -->
-    <section id="contract">
+</section>
 
-        <h2 class="section-title">
-            Verified <span>On-Chain Parameters</span>
-        </h2>
 
-        <p class="section-subtitle">
-            VERIQ token information and blockchain parameters.
-        </p>
+<!-- CONTRACT SECTION -->
+
+<section class="contract-section" id="contract">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>
+                Official <span class="gradient-text">Token Information</span>
+            </h2>
+
+            <p>
+                Public blockchain information and technical
+                specifications of the VERIQ token.
+            </p>
+        </div>
 
         <div class="contract-box">
 
             <div class="contract-label">
-                Official Smart Contract Address
+                OFFICIAL ETHEREUM SMART CONTRACT
             </div>
 
-            <span class="contract-string">
+            <span class="contract-address">
                 0xFa3Fa8BD0D10B028C5306d8e24d8Af4B20d14358
             </span>
 
-            <a href="https://etherscan.io/address/0xFa3Fa8BD0D10B028C5306d8e24d8Af4B20d14358"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn btn-secondary">
-                Verify On Etherscan
-            </a>
+            <div class="contract-actions">
 
-            <table class="spec-table">
+                <a href="https://etherscan.io/address/0xFa3Fa8BD0D10B028C5306d8e24d8Af4B20d14358"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn btn-outline">
+                    View Contract on Etherscan
+                </a>
+
+            </div>
+
+            <table class="info-table">
+
                 <tr>
-                    <th>Specification Standard</th>
-                    <td>ERC-20</td>
+                    <td>Project Name</td>
+                    <td>VERIQ</td>
                 </tr>
 
                 <tr>
-                    <th>Blockchain Network</th>
-                    <td>Ethereum Mainnet</td>
-                </tr>
-
-                <tr>
-                    <th>Token Asset Name</th>
+                    <td>Token Name</td>
                     <td>Veriq</td>
                 </tr>
 
                 <tr>
-                    <th>Token Asset Symbol</th>
+                    <td>Token Symbol</td>
                     <td>VRQ</td>
                 </tr>
 
                 <tr>
-                    <th>Total Token Supply</th>
+                    <td>Blockchain</td>
+                    <td>Ethereum Mainnet</td>
+                </tr>
+
+                <tr>
+                    <td>Token Standard</td>
+                    <td>ERC-20</td>
+                </tr>
+
+                <tr>
+                    <td>Total Supply</td>
                     <td>190,000,000 VRQ</td>
                 </tr>
 
                 <tr>
-                    <th>Token Decimals</th>
+                    <td>Decimals</td>
                     <td>18</td>
                 </tr>
+
             </table>
 
         </div>
-    </section>
 
-    <!-- TOKEN UTILITY SECTION -->
-    <section id="utility">
+    </div>
 
-        <h2 class="section-title">
-            Token <span>Utility</span>
-        </h2>
+</section>
 
-        <p class="section-subtitle">
-            Proposed use cases and planned utility of the VERIQ ecosystem.
-        </p>
 
-        <!-- THREE MAIN UTILITY CARDS -->
+<!-- TOKEN UTILITY -->
+
+<section id="utility">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                VERIQ <span class="gradient-text">Token Utility</span>
+            </h2>
+
+            <p>
+                The proposed applications and future
+                use cases of the VRQ ecosystem.
+                Features marked as planned are not
+                represented as currently operational.
+            </p>
+
+        </div>
+
         <div class="utility-grid">
 
             <div class="utility-card">
+
+                <div class="card-number">UTILITY 01</div>
+
                 <h3>Business Verification</h3>
 
                 <p>
-                    A proposed VERIQ Verified Badge framework
-                    designed to help eligible online businesses
-                    establish credibility and improve consumer trust.
+                    VERIQ aims to develop a business
+                    verification framework for eligible
+                    online stores and e-commerce businesses.
+                    The proposed VERIQ Verified Badge
+                    would help consumers identify businesses
+                    that have completed the applicable
+                    verification process.
                 </p>
 
-                <span class="phase-status">PLANNED</span>
+                <span class="status">PLANNED</span>
+
             </div>
 
+
             <div class="utility-card">
+
+                <div class="card-number">UTILITY 02</div>
+
                 <h3>AI Media Authenticity</h3>
 
                 <p>
-                    Future AI-powered tools designed to analyze
-                    potentially manipulated, synthetic and
-                    digitally altered media.
+                    The project aims to research and
+                    develop AI-powered media analysis
+                    tools to examine potentially synthetic,
+                    manipulated or digitally altered
+                    images and other media.
                 </p>
 
-                <span class="phase-status">PLANNED</span>
+                <span class="status">IN DEVELOPMENT / PLANNED</span>
+
             </div>
+
 
             <div class="utility-card">
-                <h3>Decentralized Staking</h3>
+
+                <div class="card-number">UTILITY 03</div>
+
+                <h3>Cryptographic Verification</h3>
 
                 <p>
-                    A proposed VRQ staking mechanism for
-                    ecosystem participation and access to
-                    future network services.
+                    Future verification services are
+                    intended to explore cryptographic
+                    methods for recording and checking
+                    digital authenticity evidence and
+                    verification records.
                 </p>
 
-                <span class="phase-status">PLANNED</span>
+                <span class="status">PLANNED</span>
+
             </div>
 
         </div>
 
-        <!-- VRQ UTILITY ROADMAP -->
-        <div class="utility-roadmap">
+    </div>
 
-            <h2 class="section-title">
-                VRQ Utility <span>Roadmap</span>
+</section>
+
+
+<!-- TECHNOLOGY -->
+
+<section class="technology-section" id="technology">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                Technology & <span class="gradient-text">Research</span>
             </h2>
 
-            <p class="section-subtitle">
-                The planned utility development of the VERIQ ecosystem.
+            <p>
+                The technical direction behind the
+                proposed VERIQ ecosystem.
             </p>
 
-            <div class="utility-grid">
-
-                <div class="utility-card">
-                    <h3>Phase 01 — Ecosystem Access</h3>
-
-                    <p>
-                        VRQ is designed to support access to eligible
-                        VERIQ ecosystem services and platform features.
-                    </p>
-
-                    <span class="phase-status">PLANNED</span>
-                </div>
-
-                <div class="utility-card">
-                    <h3>Phase 02 — Business Verification</h3>
-
-                    <p>
-                        A proposed framework for supporting online
-                        business verification and the VERIQ Verified Badge.
-                    </p>
-
-                    <span class="phase-status">PLANNED</span>
-                </div>
-
-                <div class="utility-card">
-                    <h3>Phase 03 — AI Media Authenticity</h3>
-
-                    <p>
-                        Future AI-powered tools designed to analyze
-                        potentially manipulated and synthetic digital media.
-                    </p>
-
-                    <span class="phase-status">PLANNED</span>
-                </div>
-
-                <div class="utility-card">
-                    <h3>Phase 04 — Decentralized Staking</h3>
-
-                    <p>
-                        A proposed staking mechanism for ecosystem
-                        participation and future network services.
-                    </p>
-
-                    <span class="phase-status">PLANNED</span>
-                </div>
-
-                <div class="utility-card">
-                    <h3>Phase 05 — Ecosystem Governance</h3>
-
-                    <p>
-                        Future governance mechanisms may enable
-                        eligible VRQ holders to participate in
-                        selected ecosystem decisions.
-                    </p>
-
-                    <span class="phase-status">PLANNED</span>
-                </div>
-
-                <div class="utility-card">
-                    <h3>Phase 06 — Ecosystem Expansion</h3>
-
-                    <p>
-                        Long-term expansion through integrations,
-                        developer tools, APIs and additional
-                        verification services.
-                    </p>
-
-                    <span class="phase-status">PLANNED</span>
-                </div>
-
-            </div>
         </div>
 
-    </section>
+        <div class="technology-box">
 
-    <!-- DEVELOPMENT ROADMAP SECTION -->
-    <section id="roadmap">
+            <h3>Blockchain Infrastructure</h3>
 
-        <h2 class="section-title">
-            VERIQ <span>Development Roadmap</span>
-        </h2>
+            <p>
+                VERIQ uses an Ethereum-based ERC-20 token
+                as the foundation of its proposed ecosystem.
+                Public blockchain infrastructure provides
+                transparent access to token contract
+                information and transactions.
+            </p>
 
-        <p class="section-subtitle">
-            A phased development plan for the VERIQ ecosystem.
-        </p>
+            <h3>AI Media Analysis</h3>
 
-        <div class="roadmap-timeline">
+            <p>
+                VERIQ's research direction includes
+                AI-based analysis of synthetic and
+                manipulated media. The objective is to
+                explore methods that can help assess
+                digital media authenticity.
+            </p>
 
-            <div class="roadmap-content">
-                <h3>Phase 01 — Foundation</h3>
+            <h3>Quantum-AI Research Direction</h3>
+
+            <p>
+                The project also explores research
+                directions involving quantum computing
+                concepts and AI-based verification.
+                These are research objectives and should
+                not be interpreted as an operational
+                quantum verification product.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DEVELOPMENT ROADMAP -->
+
+<section id="roadmap">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                Development <span class="gradient-text">Roadmap</span>
+            </h2>
+
+            <p>
+                The planned development stages of
+                the VERIQ ecosystem.
+            </p>
+
+        </div>
+
+        <div class="roadmap">
+
+            <div class="roadmap-item">
+
+                <h3>Phase 01 — Token Foundation</h3>
 
                 <p>
-                    Project foundation, token deployment
-                    and ecosystem planning.
+                    Establishment of the project foundation,
+                    ERC-20 token creation and deployment
+                    on Ethereum Mainnet.
                 </p>
 
-                <span class="phase-status">IN PROGRESS</span>
+                <span class="status">COMPLETED: TOKEN DEPLOYED</span>
+
             </div>
 
-            <div class="roadmap-content">
+
+            <div class="roadmap-item">
+
                 <h3>Phase 02 — Business Verification</h3>
 
                 <p>
-                    Development of the proposed
-                    VERIQ Verified Badge framework.
+                    Research and development of the
+                    VERIQ Verified Badge framework,
+                    business verification criteria
+                    and platform requirements.
                 </p>
 
-                <span class="phase-status">PLANNED</span>
+                <span class="status">PLANNED</span>
+
             </div>
 
-            <div class="roadmap-content">
+
+            <div class="roadmap-item">
+
                 <h3>Phase 03 — AI Media Authenticity</h3>
 
                 <p>
-                    Research and development of AI-powered
-                    synthetic media analysis.
+                    Development and testing of image
+                    analysis and AI-powered media
+                    authenticity research components.
                 </p>
 
-                <span class="phase-status">PLANNED</span>
+                <span class="status">PLANNED</span>
+
             </div>
 
-            <div class="roadmap-content">
-                <h3>Phase 04 — Staking Infrastructure</h3>
+
+            <div class="roadmap-item">
+
+                <h3>Phase 04 — Cryptographic Services</h3>
 
                 <p>
-                    Design of a proposed VRQ staking
-                    and ecosystem participation system.
+                    Exploration of cryptographic
+                    verification records and
+                    digital authenticity infrastructure.
                 </p>
 
-                <span class="phase-status">PLANNED</span>
+                <span class="status">PLANNED</span>
+
             </div>
 
-            <div class="roadmap-content">
-                <h3>Phase 05 — Governance</h3>
+
+            <div class="roadmap-item">
+
+                <h3>Phase 05 — Ecosystem Integrations</h3>
 
                 <p>
-                    Exploration of decentralized
-                    governance mechanisms.
+                    Future API development,
+                    platform integrations and
+                    enterprise verification services.
                 </p>
 
-                <span class="phase-status">PLANNED</span>
+                <span class="status">PLANNED</span>
+
             </div>
 
-            <div class="roadmap-content">
+
+            <div class="roadmap-item">
+
                 <h3>Phase 06 — Ecosystem Expansion</h3>
 
                 <p>
-                    Future integrations, developer tools
-                    and API expansion.
+                    Long-term development of additional
+                    verification services and
+                    ecosystem participation mechanisms.
                 </p>
 
-                <span class="phase-status">PLANNED</span>
+                <span class="status">PLANNED</span>
+
             </div>
 
         </div>
-    </section>
 
-    <!-- FOUNDERS SECTION -->
-    <section id="founders">
+    </div>
 
-        <h2 class="section-title">
-            Project <span>Founders & Leadership</span>
-        </h2>
+</section>
 
-        <p class="section-subtitle">
-            Meet the people behind the VERIQ ecosystem.
-        </p>
 
-        <div class="team-grid">
+<!-- FOUNDERS -->
 
-            <!-- FOUNDER 1 -->
-            <div class="team-card">
+<section class="founders-section" id="founders">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                Project <span class="gradient-text">Founders</span>
+            </h2>
+
+            <p>
+                The founding team behind the
+                VERIQ ecosystem.
+            </p>
+
+        </div>
+
+        <div class="founder-grid">
+
+            <!-- FOUNDER ONE -->
+
+            <div class="founder-card">
 
                 <img
                     src="assets/founder1.png"
-                    alt="Ammar Hyder"
-                    class="team-photo"
+                    alt="Ammar Hyder - Founder of VERIQ"
+                    class="founder-photo"
                 >
 
                 <h3>Ammar Hyder</h3>
 
-                <div class="role">Founder</div>
+                <div class="founder-role">
+                    FOUNDER
+                </div>
 
                 <p>
-                    Founder of VERIQ, contributing to the
-                    project's vision, strategic direction and
-                    development of its digital verification ecosystem.
+                    Founder of VERIQ, contributing to
+                    the project's vision, strategic
+                    direction and development of its
+                    digital verification ecosystem.
                 </p>
 
-                <div class="team-socials">
+                <div class="founder-links">
 
-                    <a class="social-icon"
-                       href="https://www.linkedin.com/in/ammar-hyder-9b4118431/"
+                    <a href="https://www.linkedin.com/in/ammar-hyder-9b4118431/"
                        target="_blank"
                        rel="noopener noreferrer">
                         LinkedIn
                     </a>
 
-                    <a class="social-icon"
-                       href="https://www.instagram.com/m_a_r_r__hyder_r/"
+                    <a href="https://www.instagram.com/m_a_r_r__hyder_r/"
                        target="_blank"
                        rel="noopener noreferrer">
                         Instagram
                     </a>
 
                 </div>
+
             </div>
 
-            <!-- FOUNDER 2 -->
-            <div class="team-card">
+
+            <!-- FOUNDER TWO -->
+
+            <div class="founder-card">
 
                 <img
                     src="assets/founder2.png"
-                    alt="Taha Umer"
-                    class="team-photo"
+                    alt="Taha Umer - Co-Founder of VERIQ"
+                    class="founder-photo"
                 >
 
                 <h3>Taha Umer</h3>
 
-                <div class="role">Co-Founder</div>
+                <div class="founder-role">
+                    CO-FOUNDER
+                </div>
 
                 <p>
-                    Co-Founder of VERIQ, contributing to the
-                    project's innovation, development and
-                    long-term ecosystem growth.
+                    Co-Founder of VERIQ, contributing
+                    to the project's innovation,
+                    development and long-term
+                    ecosystem growth.
                 </p>
 
-                <div class="team-socials">
+                <div class="founder-links">
 
-                    <a class="social-icon"
-                       href="https://www.linkedin.com/in/taha-umer/"
+                    <a href="https://www.linkedin.com/in/taha-umer/"
                        target="_blank"
                        rel="noopener noreferrer">
                         LinkedIn
                     </a>
 
-                    <a class="social-icon"
-                       href="https://www.instagram.com/taha_says_24/"
+                    <a href="https://www.instagram.com/taha_says_24/"
                        target="_blank"
                        rel="noopener noreferrer">
                         Instagram
                     </a>
 
                 </div>
+
             </div>
 
         </div>
-    </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>
-            © 2026 VERIQ Project Ecosystem.
-            All Rights Reserved.
-        </p>
-    </footer>
+    </div>
+
+</section>
+
+
+<!-- PROJECT TRANSPARENCY -->
+
+<section id="transparency">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                Project <span class="gradient-text">Transparency</span>
+            </h2>
+
+            <p>
+                Official resources and public
+                information relating to VERIQ.
+            </p>
+
+        </div>
+
+        <div class="transparency-grid">
+
+            <div class="transparency-item">
+
+                <h3>Official Project Website</h3>
+
+                <a href="https://sarafiha52-lang.github.io/coinveriq.github.io/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Visit VERIQ Website
+                </a>
+
+            </div>
+
+
+            <div class="transparency-item">
+
+                <h3>Official GitHub Repository</h3>
+
+                <a href="https://github.com/sarafiha52-lang/coinveriq.github.io"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    View GitHub Repository
+                </a>
+
+            </div>
+
+
+            <div class="transparency-item">
+
+                <h3>Smart Contract</h3>
+
+                <a href="https://etherscan.io/address/0xFa3Fa8BD0D10B028C5306d8e24d8Af4B20d14358"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    View Ethereum Contract
+                </a>
+
+            </div>
+
+
+            <div class="transparency-item">
+
+                <h3>Official Whitepaper</h3>
+
+                <a href="VERIQ%20Whitepaper%20(5).pdf"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Read VERIQ Whitepaper
+                </a>
+
+            </div>
+
+
+            <div class="transparency-item">
+
+                <h3>Official Project Email</h3>
+
+                <a href="mailto:veriq856@gmail.com">
+                    veriq856@gmail.com
+                </a>
+
+            </div>
+
+
+            <div class="transparency-item">
+
+                <h3>Official Token Logo</h3>
+
+                <a href="https://raw.githubusercontent.com/sarafiha52-lang/coinveriq.github.io/main/veriq.svg"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Download VERIQ SVG Logo
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="container footer-content">
+
+        <div class="footer-brand">
+            VERIQ
+        </div>
+
+        <div class="footer-links">
+
+            <a href="#home">Home</a>
+
+            <a href="#contract">Token Information</a>
+
+            <a href="#utility">Utility</a>
+
+            <a href="#roadmap">Roadmap</a>
+
+            <a href="#founders">Founders</a>
+
+            <a href="#transparency">Project Information</a>
+
+            <a href="VERIQ%20Whitepaper%20(5).pdf"
+               target="_blank"
+               rel="noopener noreferrer">
+                Whitepaper
+            </a>
+
+        </div>
+
+        <a href="mailto:veriq856@gmail.com"
+           class="footer-email">
+            veriq856@gmail.com
+        </a>
+
+        <div class="copyright">
+            © 2026 VERIQ. All Rights Reserved.
+            <br>
+            Ethereum-Based Digital Verification Ecosystem.
+        </div>
+
+    </div>
+
+</footer>
 
 </body>
 </html>
