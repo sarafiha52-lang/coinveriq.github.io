@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +10,18 @@
     <meta name="description" content="VERIQ (VRQ) is an Ethereum-based project focused on digital business verification, AI media authenticity analysis and cryptographic verification services.">
 
     <meta name="theme-color" content="#060913">
+    <meta name="author" content="VERIQ">
+
+    <meta property="og:title" content="VERIQ | Digital Verification Ecosystem">
+    <meta property="og:description" content="Building Trust in the Digital World through blockchain, AI media analysis and digital verification research.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sarafiha52-lang.github.io/coinveriq.github.io/">
 
     <link rel="icon" type="image/svg+xml" href="veriq.svg">
     <link rel="canonical" href="https://sarafiha52-lang.github.io/coinveriq.github.io/">
 
     <style>
+
         :root {
             --background: #060913;
             --surface: #0b1324;
@@ -33,7 +41,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 85px;
+            scroll-padding-top: 95px;
         }
 
         body {
@@ -45,6 +53,21 @@
 
         a {
             text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--cyan);
+            outline-offset: 4px;
         }
 
         .container {
@@ -61,6 +84,7 @@
             z-index: 1000;
             background: rgba(6, 9, 19, 0.96);
             backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--border);
         }
 
@@ -69,6 +93,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 20px;
         }
 
         .brand {
@@ -79,20 +104,22 @@
             font-size: 25px;
             font-weight: 800;
             letter-spacing: 2px;
+            flex-shrink: 0;
         }
 
-        ..brand img {
-    width: 42px;
-    height: 42px;
-    object-fit: contain;
-}
+        .brand img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 27px;
+            justify-content: center;
+            gap: 22px;
             list-style: none;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
@@ -112,13 +139,22 @@
             color: var(--blue) !important;
         }
 
+        .nav-button:hover {
+            background: rgba(56, 189, 248, .1);
+        }
+
         /* HERO */
 
         .hero {
             padding: 120px 20px;
             text-align: center;
             background:
-                radial-gradient(ellipse at top, #102c50 0%, #0b1324 45%, #060913 85%);
+                radial-gradient(
+                    ellipse at top,
+                    #102c50 0%,
+                    #0b1324 45%,
+                    #060913 85%
+                );
         }
 
         .hero-label {
@@ -168,6 +204,7 @@
             font-size: 14px;
             font-weight: 700;
             transition: .3s;
+            cursor: pointer;
         }
 
         .btn-primary {
@@ -183,6 +220,7 @@
         .btn-outline {
             color: var(--blue);
             border: 1px solid var(--blue);
+            background: transparent;
         }
 
         .btn-outline:hover {
@@ -247,12 +285,25 @@
             font-family: monospace;
             font-size: 14px;
             overflow-wrap: anywhere;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            transition: .3s;
+        }
+
+        .contract-address:hover {
+            border-color: var(--blue);
         }
 
         .contract-actions {
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
             margin-bottom: 25px;
+        }
+
+        .copy-button {
+            font-family: inherit;
         }
 
         .info-table {
@@ -279,11 +330,14 @@
 
         .utility-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 22px;
         }
 
         .utility-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
             padding: 30px;
             background: var(--card);
             border: 1px solid var(--border);
@@ -349,7 +403,11 @@
         .technology-box p {
             color: var(--muted);
             font-size: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .technology-box p:last-child {
+            margin-bottom: 0;
         }
 
         /* ROADMAP */
@@ -450,7 +508,7 @@
 
         .transparency-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 15px;
             max-width: 850px;
             margin: auto;
@@ -474,6 +532,10 @@
             overflow-wrap: anywhere;
         }
 
+        .transparency-item a:hover {
+            color: var(--cyan);
+        }
+
         /* FOOTER */
 
         footer {
@@ -487,10 +549,20 @@
         }
 
         .footer-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
             color: var(--blue);
             font-size: 25px;
             font-weight: 800;
             letter-spacing: 2px;
+        }
+
+        .footer-brand img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
         }
 
         .footer-links {
@@ -504,6 +576,7 @@
         .footer-links a {
             color: var(--muted);
             font-size: 13px;
+            transition: .3s;
         }
 
         .footer-links a:hover {
@@ -523,40 +596,73 @@
             font-size: 12px;
         }
 
+        /* TABLET */
+
+        @media (max-width: 1000px) {
+
+            .container {
+                width: 90%;
+            }
+
+            .navbar {
+                flex-direction: column;
+                padding: 15px 0;
+                gap: 15px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .utility-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
         /* MOBILE */
 
-        @media (max-width: 850px) {
+        @media (max-width: 600px) {
+
+            html {
+                scroll-padding-top: 150px;
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            .navbar {
+                padding: 12px 0;
+                gap: 12px;
+            }
+
+            .brand {
+                font-size: 23px;
+            }
+
             .nav-links {
-                gap: 13px;
+                gap: 10px 16px;
             }
 
             .nav-links a {
                 font-size: 12px;
             }
 
-            .utility-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                width: 90%;
-            }
-
-            .navbar {
-                padding: 15px 0;
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .nav-links {
-                justify-content: center;
-                flex-wrap: wrap;
+            .nav-button {
+                padding: 6px 10px;
             }
 
             .hero {
                 padding: 85px 15px;
+            }
+
+            .hero-label {
+                font-size: 10px;
+                letter-spacing: 1px;
+            }
+
+            .hero p {
+                font-size: 15px;
             }
 
             section {
@@ -573,14 +679,56 @@
                 padding: 20px 14px;
             }
 
+            .contract-address {
+                font-size: 12px;
+                padding: 13px 8px;
+            }
+
+            .contract-actions .btn {
+                width: 100%;
+                text-align: center;
+            }
+
             .info-table td {
                 font-size: 12px;
+                padding: 12px 5px;
+            }
+
+            .technology-box {
+                padding: 23px;
             }
 
             .roadmap-item {
                 padding: 20px;
             }
+
+            .founder-card {
+                padding: 30px 20px;
+            }
+
+            .footer-links {
+                gap: 14px;
+            }
+
         }
+
+        /* REDUCED MOTION */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+
+        }
+
     </style>
 </head>
 
@@ -593,17 +741,24 @@
 
         <a href="#home" class="brand">
             <img src="veriq.svg" alt="VERIQ Logo">
-            VERIQ
+            <span>VERIQ</span>
         </a>
 
-        <nav>
+        <nav aria-label="Main navigation">
             <ul class="nav-links">
+
                 <li><a href="#contract">Contract</a></li>
                 <li><a href="#utility">Utility</a></li>
                 <li><a href="#technology">Technology</a></li>
                 <li><a href="#roadmap">Roadmap</a></li>
                 <li><a href="#founders">Founders</a></li>
-                <li><a href="#transparency" class="nav-button">Project Info</a></li>
+
+                <li>
+                    <a href="#transparency" class="nav-button">
+                        Project Info
+                    </a>
+                </li>
+
             </ul>
         </nav>
 
@@ -611,502 +766,253 @@
 </header>
 
 
-<!-- HERO SECTION -->
+<!-- MAIN CONTENT -->
 
 <main>
 
-<section class="hero" id="home">
+    <!-- HERO SECTION -->
 
-    <div class="container">
+    <section class="hero" id="home">
 
-        <div class="hero-label">
-            ETHEREUM-BASED DIGITAL VERIFICATION ECOSYSTEM
-        </div>
+        <div class="container">
 
-        <h1>
-            Building Trust in the
-            <span class="gradient-text">
-                Digital World
-            </span>
-        </h1>
-
-        <p>
-            VERIQ (VRQ) is a blockchain-based project
-            focused on digital business verification,
-            AI-powered media authenticity analysis and
-            future cryptographic verification services.
-            The project aims to support transparency,
-            digital credibility and consumer protection.
-        </p>
-
-        <div class="button-group">
-
-            <a href="#utility" class="btn btn-primary">
-                Explore Ecosystem
-            </a>
-
-            <a href="VERIQ%20Whitepaper%20(5).pdf"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn btn-outline">
-                Read Whitepaper
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- CONTRACT SECTION -->
-
-<section class="contract-section" id="contract">
-
-    <div class="container">
-
-        <div class="section-heading">
-            <h2>
-                Official <span class="gradient-text">Token Information</span>
-            </h2>
-
-            <p>
-                Public blockchain information and technical
-                specifications of the VERIQ token.
-            </p>
-        </div>
-
-        <div class="contract-box">
-
-            <div class="contract-label">
-                OFFICIAL ETHEREUM SMART CONTRACT
+            <div class="hero-label">
+                ETHEREUM-BASED DIGITAL VERIFICATION ECOSYSTEM
             </div>
 
-            <span class="contract-address">
-                0xFa3Fa8BD0D10B028C5306d8e24d8Af4B20d14358
-            </span>
+            <h1>
+                Building Trust in the
+                <span class="gradient-text">
+                    Digital World
+                </span>
+            </h1>
 
-            <div class="contract-actions">
+            <p>
+                VERIQ (VRQ) is a blockchain-based project
+                focused on digital business verification,
+                AI-powered media authenticity analysis and
+                future cryptographic verification services.
+                The project aims to support transparency,
+                digital credibility and consumer protection.
+            </p>
 
-                <a href="https://etherscan.io/address/0xFa3Fa8BD0D10B028C5306d8e24d8Af4B20d14358"
+            <div class="button-group">
+
+                <a href="#utility" class="btn btn-primary">
+                    Explore Ecosystem
+                </a>
+
+                <a href="VERIQ-Whitepaper.pdf"
                    target="_blank"
                    rel="noopener noreferrer"
                    class="btn btn-outline">
-                    View Contract on Etherscan
+                    Read Whitepaper
                 </a>
 
             </div>
 
-            <table class="info-table">
-
-                <tr>
-                    <td>Project Name</td>
-                    <td>VERIQ</td>
-                </tr>
-
-                <tr>
-                    <td>Token Name</td>
-                    <td>Veriq</td>
-                </tr>
-
-                <tr>
-                    <td>Token Symbol</td>
-                    <td>VRQ</td>
-                </tr>
-
-                <tr>
-                    <td>Blockchain</td>
-                    <td>Ethereum Mainnet</td>
-                </tr>
-
-                <tr>
-                    <td>Token Standard</td>
-                    <td>ERC-20</td>
-                </tr>
-
-                <tr>
-                    <td>Total Supply</td>
-                    <td>190,000,000 VRQ</td>
-                </tr>
-
-                <tr>
-                    <td>Decimals</td>
-                    <td>18</td>
-                </tr>
-
-            </table>
-
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 
-<!-- TOKEN UTILITY -->
+    <!-- CONTRACT SECTION -->
 
-<section id="utility">
+    <section class="contract-section" id="contract">
 
-    <div class="container">
+        <div class="container">
 
-        <div class="section-heading">
+            <div class="section-heading">
 
-            <h2>
-                VERIQ <span class="gradient-text">Token Utility</span>
-            </h2>
-
-            <p>
-                The proposed applications and future
-                use cases of the VRQ ecosystem.
-                Features marked as planned are not
-                represented as currently operational.
-            </p>
-
-        </div>
-
-        <div class="utility-grid">
-
-            <div class="utility-card">
-
-                <div class="card-number">UTILITY 01</div>
-
-                <h3>Business Verification</h3>
+                <h2>
+                    Official
+                    <span class="gradient-text">
+                        Token Information
+                    </span>
+                </h2>
 
                 <p>
-                    VERIQ aims to develop a business
-                    verification framework for eligible
-                    online stores and e-commerce businesses.
-                    The proposed VERIQ Verified Badge
-                    would help consumers identify businesses
-                    that have completed the applicable
-                    verification process.
+                    Public blockchain information and technical
+                    specifications of the VERIQ token.
                 </p>
-
-                <span class="status">PLANNED</span>
 
             </div>
 
+            <div class="contract-box">
 
-            <div class="utility-card">
-
-                <div class="card-number">UTILITY 02</div>
-
-                <h3>AI Media Authenticity</h3>
-
-                <p>
-                    The project aims to research and
-                    develop AI-powered media analysis
-                    tools to examine potentially synthetic,
-                    manipulated or digitally altered
-                    images and other media.
-                </p>
-
-                <span class="status">IN DEVELOPMENT / PLANNED</span>
-
-            </div>
-
-
-            <div class="utility-card">
-
-                <div class="card-number">UTILITY 03</div>
-
-                <h3>Cryptographic Verification</h3>
-
-                <p>
-                    Future verification services are
-                    intended to explore cryptographic
-                    methods for recording and checking
-                    digital authenticity evidence and
-                    verification records.
-                </p>
-
-                <span class="status">PLANNED</span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- TECHNOLOGY -->
-
-<section class="technology-section" id="technology">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <h2>
-                Technology & <span class="gradient-text">Research</span>
-            </h2>
-
-            <p>
-                The technical direction behind the
-                proposed VERIQ ecosystem.
-            </p>
-
-        </div>
-
-        <div class="technology-box">
-
-            <h3>Blockchain Infrastructure</h3>
-
-            <p>
-                VERIQ uses an Ethereum-based ERC-20 token
-                as the foundation of its proposed ecosystem.
-                Public blockchain infrastructure provides
-                transparent access to token contract
-                information and transactions.
-            </p>
-
-            <h3>AI Media Analysis</h3>
-
-            <p>
-                VERIQ's research direction includes
-                AI-based analysis of synthetic and
-                manipulated media. The objective is to
-                explore methods that can help assess
-                digital media authenticity.
-            </p>
-
-            <h3>Quantum-AI Research Direction</h3>
-
-            <p>
-                The project also explores research
-                directions involving quantum computing
-                concepts and AI-based verification.
-                These are research objectives and should
-                not be interpreted as an operational
-                quantum verification product.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- DEVELOPMENT ROADMAP -->
-
-<section id="roadmap">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <h2>
-                Development <span class="gradient-text">Roadmap</span>
-            </h2>
-
-            <p>
-                The planned development stages of
-                the VERIQ ecosystem.
-            </p>
-
-        </div>
-
-        <div class="roadmap">
-
-            <div class="roadmap-item">
-
-                <h3>Phase 01 — Token Foundation</h3>
-
-                <p>
-                    Establishment of the project foundation,
-                    ERC-20 token creation and deployment
-                    on Ethereum Mainnet.
-                </p>
-
-                <span class="status">COMPLETED: TOKEN DEPLOYED</span>
-
-            </div>
-
-
-            <div class="roadmap-item">
-
-                <h3>Phase 02 — Business Verification</h3>
-
-                <p>
-                    Research and development of the
-                    VERIQ Verified Badge framework,
-                    business verification criteria
-                    and platform requirements.
-                </p>
-
-                <span class="status">PLANNED</span>
-
-            </div>
-
-
-            <div class="roadmap-item">
-
-                <h3>Phase 03 — AI Media Authenticity</h3>
-
-                <p>
-                    Development and testing of image
-                    analysis and AI-powered media
-                    authenticity research components.
-                </p>
-
-                <span class="status">PLANNED</span>
-
-            </div>
-
-
-            <div class="roadmap-item">
-
-                <h3>Phase 04 — Cryptographic Services</h3>
-
-                <p>
-                    Exploration of cryptographic
-                    verification records and
-                    digital authenticity infrastructure.
-                </p>
-
-                <span class="status">PLANNED</span>
-
-            </div>
-
-
-            <div class="roadmap-item">
-
-                <h3>Phase 05 — Ecosystem Integrations</h3>
-
-                <p>
-                    Future API development,
-                    platform integrations and
-                    enterprise verification services.
-                </p>
-
-                <span class="status">PLANNED</span>
-
-            </div>
-
-
-            <div class="roadmap-item">
-
-                <h3>Phase 06 — Ecosystem Expansion</h3>
-
-                <p>
-                    Long-term development of additional
-                    verification services and
-                    ecosystem participation mechanisms.
-                </p>
-
-                <span class="status">PLANNED</span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- FOUNDERS -->
-
-<section class="founders-section" id="founders">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <h2>
-                Project <span class="gradient-text">Founders</span>
-            </h2>
-
-            <p>
-                The founding team behind the
-                VERIQ ecosystem.
-            </p>
-
-        </div>
-
-        <div class="founder-grid">
-
-            <!-- FOUNDER ONE -->
-
-            <div class="founder-card">
-
-                <img
-                    src="assets/founder1.png"
-                    alt="Ammar Hyder - Founder of VERIQ"
-                    class="founder-photo"
-                >
-
-                <h3>Ammar Hyder</h3>
-
-                <div class="founder-role">
-                    FOUNDER
+                <div class="contract-label">
+                    OFFICIAL ETHEREUM SMART CONTRACT
                 </div>
 
-                <p>
-                    Founder of VERIQ, contributing to
-                    the project's vision, strategic
-                    direction and development of its
-                    digital verification ecosystem.
-                </p>
+                <a
+                    href="https://etherscan.io/address/0xFa3Fa8BD0D10B028C5306d8e24d8Af4B20d14358"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contract-address"
+                    title="View contract on Etherscan">
 
-                <div class="founder-links">
+                    0xFa3Fa8BD0D10B028C5306d8e24d8Af4B20d14358
 
-                    <a href="https://www.linkedin.com/in/ammar-hyder-9b4118431/"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        LinkedIn
-                    </a>
+                </a>
 
-                    <a href="https://www.instagram.com/m_a_r_r__hyder_r/"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        Instagram
+                <div class="contract-actions">
+
+                    <button
+                        type="button"
+                        class="btn btn-outline copy-button"
+                        id="copyContract">
+
+                        Copy Address
+
+                    </button>
+
+                    <a
+                        href="https://etherscan.io/address/0xFa3Fa8BD0D10B028C5306d8e24d8Af4B20d14358"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-outline">
+
+                        View Contract on Etherscan
+
                     </a>
 
                 </div>
 
+                <table class="info-table">
+
+                    <tbody>
+
+                        <tr>
+                            <td>Project Name</td>
+                            <td>VERIQ</td>
+                        </tr>
+
+                        <tr>
+                            <td>Token Name</td>
+                            <td>Veriq</td>
+                        </tr>
+
+                        <tr>
+                            <td>Token Symbol</td>
+                            <td>VRQ</td>
+                        </tr>
+
+                        <tr>
+                            <td>Blockchain</td>
+                            <td>Ethereum Mainnet</td>
+                        </tr>
+
+                        <tr>
+                            <td>Token Standard</td>
+                            <td>ERC-20</td>
+                        </tr>
+
+                        <tr>
+                            <td>Total Supply</td>
+                            <td>190,000,000 VRQ</td>
+                        </tr>
+
+                        <tr>
+                            <td>Decimals</td>
+                            <td>18</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
             </div>
 
+        </div>
 
-            <!-- FOUNDER TWO -->
+    </section>
 
-            <div class="founder-card">
 
-                <img
-                    src="assets/founder2.png"
-                    alt="Taha Umer - Co-Founder of VERIQ"
-                    class="founder-photo"
-                >
+    <!-- TOKEN UTILITY -->
 
-                <h3>Taha Umer</h3>
+    <section id="utility">
 
-                <div class="founder-role">
-                    CO-FOUNDER
-                </div>
+        <div class="container">
+
+            <div class="section-heading">
+
+                <h2>
+                    VERIQ
+                    <span class="gradient-text">
+                        Token Utility
+                    </span>
+                </h2>
 
                 <p>
-                    Co-Founder of VERIQ, contributing
-                    to the project's innovation,
-                    development and long-term
-                    ecosystem growth.
+                    The proposed applications and future
+                    use cases of the VRQ ecosystem.
+                    Features marked as planned are not
+                    represented as currently operational.
                 </p>
 
-                <div class="founder-links">
+            </div>
 
-                    <a href="https://www.linkedin.com/in/taha-umer24556644?utm_source=share_via&utm_content=profile&utm_medium=member_android"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        LinkedIn
-                    </a>
+            <div class="utility-grid">
 
-                    <a href="https://www.instagram.com/taha_says_24/"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        Instagram
-                    </a>
+                <div class="utility-card">
+
+                    <div class="card-number">UTILITY 01</div>
+
+                    <h3>Business Verification</h3>
+
+                    <p>
+                        VERIQ aims to develop a business
+                        verification framework for eligible
+                        online stores and e-commerce businesses.
+                        The proposed VERIQ Verified Badge
+                        would help consumers identify businesses
+                        that have completed the applicable
+                        verification process. A future model may
+                        involve committing or staking VRQ tokens
+                        subject to published eligibility rules.
+                    </p>
+
+                    <span class="status">PLANNED</span>
+
+                </div>
+
+
+                <div class="utility-card">
+
+                    <div class="card-number">UTILITY 02</div>
+
+                    <h3>AI Media Authenticity</h3>
+
+                    <p>
+                        The project aims to research and
+                        develop AI-powered media analysis
+                        tools to examine potentially synthetic,
+                        manipulated or digitally altered
+                        images and other media.
+                    </p>
+
+                    <span class="status">
+                        IN DEVELOPMENT / PLANNED
+                    </span>
+
+                </div>
+
+
+                <div class="utility-card">
+
+                    <div class="card-number">UTILITY 03</div>
+
+                    <h3>Cryptographic Verification</h3>
+
+                    <p>
+                        Future verification services are
+                        intended to explore cryptographic
+                        methods for recording and checking
+                        digital authenticity evidence and
+                        verification records.
+                    </p>
+
+                    <span class="status">PLANNED</span>
 
                 </div>
 
@@ -1114,112 +1020,445 @@
 
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 
-<!-- PROJECT TRANSPARENCY -->
+    <!-- TECHNOLOGY -->
 
-<section id="transparency">
+    <section class="technology-section" id="technology">
 
-    <div class="container">
+        <div class="container">
 
-        <div class="section-heading">
+            <div class="section-heading">
 
-            <h2>
-                Project <span class="gradient-text">Transparency</span>
-            </h2>
+                <h2>
+                    Technology &
+                    <span class="gradient-text">
+                        Research
+                    </span>
+                </h2>
 
-            <p>
-                Official resources and public
-                information relating to VERIQ.
-            </p>
-
-        </div>
-
-        <div class="transparency-grid">
-
-            <div class="transparency-item">
-
-                <h3>Official Project Website</h3>
-
-                <a href="https://sarafiha52-lang.github.io/coinveriq.github.io/"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    Visit VERIQ Website
-                </a>
+                <p>
+                    The technical direction behind the
+                    proposed VERIQ ecosystem.
+                </p>
 
             </div>
 
+            <div class="technology-box">
 
-            <div class="transparency-item">
+                <h3>Blockchain Infrastructure</h3>
 
-                <h3>Official GitHub Repository</h3>
+                <p>
+                    VERIQ uses an Ethereum-based ERC-20 token
+                    as the foundation of its proposed ecosystem.
+                    Public blockchain infrastructure provides
+                    transparent access to token contract
+                    information and transactions.
+                </p>
 
-                <a href="https://github.com/sarafiha52-lang/coinveriq.github.io"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    View GitHub Repository
-                </a>
+                <h3>AI Media Analysis</h3>
 
-            </div>
+                <p>
+                    VERIQ's research direction includes
+                    AI-based analysis of synthetic and
+                    manipulated media. The objective is to
+                    explore methods that can help assess
+                    digital media authenticity.
+                </p>
 
+                <h3>Quantum-AI Research Direction</h3>
 
-            <div class="transparency-item">
-
-                <h3>Smart Contract</h3>
-
-                <a href="https://etherscan.io/address/0xFa3Fa8BD0D10B028C5306d8e24d8Af4B20d14358"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    View Ethereum Contract
-                </a>
-
-            </div>
-
-
-            <div class="transparency-item">
-
-                <h3>Official Whitepaper</h3>
-
-                <a href="VERIQ%20Whitepaper%20(5).pdf"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    Read VERIQ Whitepaper
-                </a>
-
-            </div>
-
-
-            <div class="transparency-item">
-
-                <h3>Official Project Email</h3>
-
-                <a href="mailto:veriq856@gmail.com">
-                    veriq856@gmail.com
-                </a>
-
-            </div>
-
-
-            <div class="transparency-item">
-
-                <h3>Official Token Logo</h3>
-
-                <a href="https://raw.githubusercontent.com/sarafiha52-lang/coinveriq.github.io/main/veriq.svg"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    Download VERIQ SVG Logo
-                </a>
+                <p>
+                    The project also explores research
+                    directions involving quantum computing
+                    concepts and AI-based verification.
+                    These are research objectives and should
+                    not be interpreted as an operational
+                    quantum verification product.
+                </p>
 
             </div>
 
         </div>
 
-    </div>
+    </section>
 
-</section>
+
+    <!-- DEVELOPMENT ROADMAP -->
+
+    <section id="roadmap">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <h2>
+                    Development
+                    <span class="gradient-text">
+                        Roadmap
+                    </span>
+                </h2>
+
+                <p>
+                    The planned development stages of
+                    the VERIQ ecosystem.
+                </p>
+
+            </div>
+
+            <div class="roadmap">
+
+                <div class="roadmap-item">
+
+                    <h3>Phase 01 — Token Foundation</h3>
+
+                    <p>
+                        Establishment of the project foundation,
+                        ERC-20 token creation and deployment
+                        on Ethereum Mainnet.
+                    </p>
+
+                    <span class="status">
+                        COMPLETED: TOKEN DEPLOYED
+                    </span>
+
+                </div>
+
+
+                <div class="roadmap-item">
+
+                    <h3>Phase 02 — Business Verification</h3>
+
+                    <p>
+                        Research and development of the
+                        VERIQ Verified Badge framework,
+                        business verification criteria
+                        and platform requirements.
+                    </p>
+
+                    <span class="status">PLANNED</span>
+
+                </div>
+
+
+                <div class="roadmap-item">
+
+                    <h3>Phase 03 — AI Media Authenticity</h3>
+
+                    <p>
+                        Development and testing of image
+                        analysis and AI-powered media
+                        authenticity research components.
+                    </p>
+
+                    <span class="status">PLANNED</span>
+
+                </div>
+
+
+                <div class="roadmap-item">
+
+                    <h3>Phase 04 — Cryptographic Services</h3>
+
+                    <p>
+                        Exploration of cryptographic
+                        verification records and
+                        digital authenticity infrastructure.
+                    </p>
+
+                    <span class="status">PLANNED</span>
+
+                </div>
+
+
+                <div class="roadmap-item">
+
+                    <h3>Phase 05 — Ecosystem Integrations</h3>
+
+                    <p>
+                        Future API development,
+                        platform integrations and
+                        enterprise verification services.
+                    </p>
+
+                    <span class="status">PLANNED</span>
+
+                </div>
+
+
+                <div class="roadmap-item">
+
+                    <h3>Phase 06 — Ecosystem Expansion</h3>
+
+                    <p>
+                        Long-term development of additional
+                        verification services and
+                        ecosystem participation mechanisms.
+                    </p>
+
+                    <span class="status">PLANNED</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOUNDERS -->
+
+    <section class="founders-section" id="founders">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <h2>
+                    Project
+                    <span class="gradient-text">
+                        Founders
+                    </span>
+                </h2>
+
+                <p>
+                    The founding team behind the
+                    VERIQ ecosystem.
+                </p>
+
+            </div>
+
+            <div class="founder-grid">
+
+                <!-- FOUNDER ONE -->
+
+                <div class="founder-card">
+
+                    <img
+                        src="assets/founder1.png"
+                        alt="Ammar Hyder - Founder of VERIQ"
+                        class="founder-photo"
+                        width="135"
+                        height="135"
+                        loading="lazy">
+
+                    <h3>Ammar Hyder</h3>
+
+                    <div class="founder-role">
+                        FOUNDER
+                    </div>
+
+                    <p>
+                        Founder of VERIQ, contributing to
+                        the project's vision, strategic
+                        direction and development of its
+                        digital verification ecosystem.
+                    </p>
+
+                    <div class="founder-links">
+
+                        <a
+                            href="https://www.linkedin.com/in/ammar-hyder-9b4118431/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+
+                            LinkedIn
+
+                        </a>
+
+                        <a
+                            href="https://www.instagram.com/m_a_r_r__hyder_r/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+
+                            Instagram
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FOUNDER TWO -->
+
+                <div class="founder-card">
+
+                    <img
+                        src="assets/founder2.png"
+                        alt="Taha Umer - Co-Founder of VERIQ"
+                        class="founder-photo"
+                        width="135"
+                        height="135"
+                        loading="lazy">
+
+                    <h3>Taha Umer</h3>
+
+                    <div class="founder-role">
+                        CO-FOUNDER
+                    </div>
+
+                    <p>
+                        Co-Founder of VERIQ, contributing
+                        to the project's innovation,
+                        development and long-term
+                        ecosystem growth.
+                    </p>
+
+                    <div class="founder-links">
+
+                        <a
+                            href="https://www.linkedin.com/in/taha-umer24556644/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+
+                            LinkedIn
+
+                        </a>
+
+                        <a
+                            href="https://www.instagram.com/taha_says_24/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+
+                            Instagram
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROJECT TRANSPARENCY -->
+
+    <section id="transparency">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <h2>
+                    Project
+                    <span class="gradient-text">
+                        Transparency
+                    </span>
+                </h2>
+
+                <p>
+                    Official resources and public
+                    information relating to VERIQ.
+                </p>
+
+            </div>
+
+            <div class="transparency-grid">
+
+                <div class="transparency-item">
+
+                    <h3>Official Project Website</h3>
+
+                    <a
+                        href="https://sarafiha52-lang.github.io/coinveriq.github.io/"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        Visit VERIQ Website
+
+                    </a>
+
+                </div>
+
+
+                <div class="transparency-item">
+
+                    <h3>Official GitHub Repository</h3>
+
+                    <a
+                        href="https://github.com/sarafiha52-lang/coinveriq.github.io"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        View GitHub Repository
+
+                    </a>
+
+                </div>
+
+
+                <div class="transparency-item">
+
+                    <h3>Smart Contract</h3>
+
+                    <a
+                        href="https://etherscan.io/address/0xFa3Fa8BD0D10B028C5306d8e24d8Af4B20d14358"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        View Ethereum Contract
+
+                    </a>
+
+                </div>
+
+
+                <div class="transparency-item">
+
+                    <h3>Official Whitepaper</h3>
+
+                    <a
+                        href="VERIQ-Whitepaper.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        Read VERIQ Whitepaper
+
+                    </a>
+
+                </div>
+
+
+                <div class="transparency-item">
+
+                    <h3>Official Project Email</h3>
+
+                    <a href="mailto:veriq856@gmail.com">
+
+                        veriq856@gmail.com
+
+                    </a>
+
+                </div>
+
+
+                <div class="transparency-item">
+
+                    <h3>Official Token Logo</h3>
+
+                    <a
+                        href="https://raw.githubusercontent.com/sarafiha52-lang/coinveriq.github.io/main/veriq.svg"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        Download VERIQ SVG Logo
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
 
 </main>
 
@@ -1228,10 +1467,16 @@
 
 <footer>
 
-   <div class="footer-brand">
-    <img src="veriq.svg" alt="VERIQ Logo">
-    <span>VERIQ</span>
-</div>
+    <div class="container footer-content">
+
+        <div class="footer-brand">
+
+            <img src="veriq.svg" alt="VERIQ Logo">
+
+            <span>VERIQ</span>
+
+        </div>
+
 
         <div class="footer-links">
 
@@ -1241,34 +1486,93 @@
 
             <a href="#utility">Utility</a>
 
+            <a href="#technology">Technology</a>
+
             <a href="#roadmap">Roadmap</a>
 
             <a href="#founders">Founders</a>
 
             <a href="#transparency">Project Information</a>
 
-            <a href="VERIQ%20Whitepaper%20(5).pdf"
-               target="_blank"
-               rel="noopener noreferrer">
+            <a
+                href="VERIQ-Whitepaper.pdf"
+                target="_blank"
+                rel="noopener noreferrer">
+
                 Whitepaper
+
             </a>
 
         </div>
 
-        <a href="mailto:veriq856@gmail.com"
-           class="footer-email">
+
+        <a
+            href="mailto:veriq856@gmail.com"
+            class="footer-email">
+
             veriq856@gmail.com
+
         </a>
 
+
         <div class="copyright">
+
             © 2026 VERIQ. All Rights Reserved.
+
             <br>
+
             Ethereum-Based Digital Verification Ecosystem.
+
         </div>
 
     </div>
 
 </footer>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+    // OFFICIAL VERIQ CONTRACT ADDRESS
+
+    const contractAddress =
+        "0xFa3Fa8BD0D10B028C5306d8e24d8Af4B20d14358";
+
+
+    // COPY CONTRACT ADDRESS
+
+    const copyButton = document.getElementById("copyContract");
+
+    copyButton.addEventListener("click", async function () {
+
+        try {
+
+            await navigator.clipboard.writeText(contractAddress);
+
+            copyButton.textContent = "Address Copied!";
+
+            setTimeout(function () {
+
+                copyButton.textContent = "Copy Address";
+
+            }, 2000);
+
+        } catch (error) {
+
+            copyButton.textContent = "Copy Not Available";
+
+            setTimeout(function () {
+
+                copyButton.textContent = "Copy Address";
+
+            }, 2000);
+
+        }
+
+    });
+
+</script>
 
 </body>
 </html>
